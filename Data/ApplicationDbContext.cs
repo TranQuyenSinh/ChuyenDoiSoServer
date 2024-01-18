@@ -14,9 +14,11 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.Entity<UserLogin>()
+                .HasKey(e => new { e.ProviderName, e.ProviderKey });
     }
 
     public DbSet<Role> Roles { get; set; }
     public DbSet<User> Users { get; set; }
-
+    public DbSet<UserLogin> UserLogins { get; set; }
 }
