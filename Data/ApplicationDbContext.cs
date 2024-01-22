@@ -21,4 +21,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Role> Roles { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserLogin> UserLogins { get; set; }
+
+    public DbSet<LinhVuc> LinhVucs { get; set; }
+    public DbSet<TinTuc> TinTucs { get; set; }
+    public DbSet<BinhLuan> BinhLuans { get; set; }
 }

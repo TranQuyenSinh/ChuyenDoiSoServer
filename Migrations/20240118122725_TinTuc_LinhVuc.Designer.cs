@@ -4,6 +4,7 @@ using ChuyenDoiSoServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChuyenDoiSoServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240118122725_TinTuc_LinhVuc")]
+    partial class TinTuc_LinhVuc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,42 +23,6 @@ namespace ChuyenDoiSoServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ChuyenDoiSoServer.Models.BinhLuan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("BinhLuanChaId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NoiDung")
-                        .IsRequired()
-                        .HasMaxLength(2147483647)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TinTucId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BinhLuanChaId");
-
-                    b.HasIndex("TinTucId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BinhLuan");
-                });
 
             modelBuilder.Entity("ChuyenDoiSoServer.Models.LinhVuc", b =>
                 {
@@ -211,35 +177,10 @@ namespace ChuyenDoiSoServer.Migrations
                     b.ToTable("UserLogins");
                 });
 
-            modelBuilder.Entity("ChuyenDoiSoServer.Models.BinhLuan", b =>
-                {
-                    b.HasOne("ChuyenDoiSoServer.Models.BinhLuan", "BinhLuanCha")
-                        .WithMany("BinhLuanCon")
-                        .HasForeignKey("BinhLuanChaId");
-
-                    b.HasOne("ChuyenDoiSoServer.Models.TinTuc", "TinTuc")
-                        .WithMany()
-                        .HasForeignKey("TinTucId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ChuyenDoiSoServer.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BinhLuanCha");
-
-                    b.Navigation("TinTuc");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ChuyenDoiSoServer.Models.TinTuc", b =>
                 {
                     b.HasOne("ChuyenDoiSoServer.Models.LinhVuc", "LinhVuc")
-                        .WithMany("TinTucs")
+                        .WithMany()
                         .HasForeignKey("LinhVucId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -267,16 +208,6 @@ namespace ChuyenDoiSoServer.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ChuyenDoiSoServer.Models.BinhLuan", b =>
-                {
-                    b.Navigation("BinhLuanCon");
-                });
-
-            modelBuilder.Entity("ChuyenDoiSoServer.Models.LinhVuc", b =>
-                {
-                    b.Navigation("TinTucs");
                 });
 #pragma warning restore 612, 618
         }
