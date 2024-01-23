@@ -53,16 +53,28 @@ public class TinTucController : ControllerBase
 
         // var tinTucs = linhVuc.TinTucs
         //                 .Where(x => x.TrangThai == 1)
-        //                 .OrderBy(x => x.CreatedAt)
+        //                 .OrderByDescending(x => x.CreatedAt)
         //                 .ToList();
 
         var tinTucs = linhVuc.TinTucs
-                        .OrderBy(x => x.CreatedAt)
+                        .OrderByDescending(x => x.CreatedAt)
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();
 
         return new JsonResult(tinTucs);
     }
 
+    [HttpGet("timkiem-tintuc")]
+    public IActionResult TimKiemTinTucByTuKhoa([FromQuery(Name = "tuKhoa")] string tuKhoa)
+    {
+        Console.WriteLine("========== Tìm kiếm tin tức ==========");
+        Console.WriteLine("========== Từ khóa: {0} ==========", tuKhoa);
+        Console.WriteLine("========== Tìm kiếm tin tức ==========");
 
+        var tinTucs = _context.TinTucs
+                        .Where(x => x.TieuDe.Contains(tuKhoa))
+                        .Select(x => new ChiTietTinModel(x))
+                        .ToList();
+        return new JsonResult(tinTucs);
+    }
 }
