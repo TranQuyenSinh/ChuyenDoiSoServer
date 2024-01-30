@@ -1,4 +1,5 @@
 using ChuyenDoiSoServer.Models;
+using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Utils;
 
 namespace ChuyenDoiSoServer.Api.TinTuc.ResponseModel;
@@ -21,18 +22,20 @@ public class ChiTietTinModel
     public string TomTat { get; set; }
     public string HinhAnh { get; set; }
     public string TacGia { get; set; }
+    public string LinhVuc { get; set; }
     public int LuotXem { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public ChiTietTinModel(Models.TinTuc tinTuc)
+    public ChiTietTinModel(Tintuc tinTuc)
     {
         Id = tinTuc.Id;
-        TieuDe = tinTuc.TieuDe;
-        NoiDung = tinTuc.NoiDung;
-        TomTat = tinTuc.TomTat;
-        HinhAnh = AppPath.GenerateImagePath(AppPath.TIN_TUC_PHOTO, tinTuc.HinhAnh);
-        TacGia = tinTuc.TacGia;
-        LuotXem = tinTuc.LuotXem;
-        CreatedAt = tinTuc.CreatedAt;
+        LinhVuc = tinTuc.IdLinhvucNavigation?.Tenlinhvuc;
+        TieuDe = tinTuc.Tieude;
+        NoiDung = tinTuc.Noidung;
+        TomTat = tinTuc.Tomtat;
+        HinhAnh = AppPath.GenerateImagePath(AppPath.TIN_TUC_PHOTO, tinTuc.Hinhanh);
+        TacGia = tinTuc.IdUserNavigation.Hoten;
+        LuotXem = tinTuc.Luotxem;
+        CreatedAt = tinTuc.Ngaydang;
     }
 }

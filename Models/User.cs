@@ -1,42 +1,28 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace ChuyenDoiSoServer.Models;
-
-public class User
+namespace ChuyenDoiSoServer.Models
 {
-    [Key]
-    public int Id { get; set; }
+    public partial class User
+    {
+        public User()
+        {
+            Binhluans = new HashSet<Binhluan>();
+            Doanhnghieps = new HashSet<Doanhnghiep>();
+            Tintucs = new HashSet<Tintuc>();
+            UserVaitros = new HashSet<UserVaitro>();
+        }
 
-    /* ================ Auth ================ */
-    [StringLength(255)]
-    public string? FirstName { get; set; }
-    [StringLength(255)]
-    public string? LastName { get; set; }
+        public int Id { get; set; }
+        public string Hoten { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string? Password { get; set; }
+        public string? ProviderKey { get; set; }
+        public sbyte Trangthai { get; set; }
 
-    [StringLength(255)]
-    public string Email { get; set; }
-
-    [StringLength(255)]
-    public string? Password { get; set; }
-
-    public int RoleId { get; set; }
-    public Role Role { get; set; }
-
-    // public string? RefreshToken { get; set; }
-    // public DateTime RefreshTokenExpiryTime { get; set; }
-
-    /* ================ Personal information ================ */
-
-    [StringLength(255)]
-    public string? Phone { get; set; }
-
-    public string? Photo { get; set; }
-
-    // [StringLength(255)]
-    // public string? Address { get; set; }
-    // public string? Description { get; set; }
-    // public bool? Gender { get; set; }
-    // public bool IsLocked { get; set; } = false;
-    // public DateTime? DateOfBirth { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public virtual ICollection<Binhluan> Binhluans { get; set; }
+        public virtual ICollection<Doanhnghiep> Doanhnghieps { get; set; }
+        public virtual ICollection<Tintuc> Tintucs { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitros { get; set; }
+    }
 }

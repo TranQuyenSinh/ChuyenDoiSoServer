@@ -1,6 +1,6 @@
 using ChuyenDoiSoServer.Api.BinhLuan.RequestModel;
 using ChuyenDoiSoServer.Api.TinTuc.ResponseModel;
-using ChuyenDoiSoServer.Data;
+using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +12,9 @@ namespace ChuyenDoiSoServer.Api.Controllers;
 [ApiController]
 public class BinhLuanController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ChuyendoisoContext _context;
 
-    public BinhLuanController(ApplicationDbContext context)
+    public BinhLuanController(ChuyendoisoContext context)
     {
         _context = context;
     }
@@ -23,7 +23,7 @@ public class BinhLuanController : ControllerBase
     public IActionResult GetBinhLuanByTinTucId([FromQuery(Name = "tinTucId")] int tinTucId)
     {
         Console.WriteLine("======= Lấy bình luận ========");
-        var tinTucExist = _context.TinTucs.Any(x => x.Id == tinTucId);
+        var tinTucExist = _context.Tintucs.Any(x => x.Id == tinTucId);
 
         if (!tinTucExist)
             return BadRequest(new
@@ -33,12 +33,12 @@ public class BinhLuanController : ControllerBase
             });
 
 
-        var binhLuans = _context.BinhLuans
-                            .Where(x => x.TinTucId == tinTucId && x.BinhLuanChaId == null)
-                            .Include(x => x.User)
-                            .Include(x => x.PhanHois)
-                            .ThenInclude(x => x.User)
-                            .OrderByDescending(x => x.CreatedAt)
+        var binhLuans = _context.Binhluans
+                            .Where(x => x.IdTintuc == tinTucId && x.IdBinhluan == null)
+                            .Include(x => x.IdUserNavigation)
+                            .Include(x => x.InverseIdBinhluanNavigation)
+                            .ThenInclude(x => x.IdUserNavigation)
+                            .OrderByDescending(x => x.Ngaydang)
                             .Select(x => new BinhLuanModel(x))
                             .ToList();
 
@@ -50,7 +50,7 @@ public class BinhLuanController : ControllerBase
     {
         Console.WriteLine("======= Thêm bình luận ========");
         var userExist = _context.Users.Any(x => x.Id == model.UserId);
-        var newsExitst = _context.TinTucs.Any(x => x.Id == model.TinTucId);
+        var newsExitst = _context.Tintucs.Any(x => x.Id == model.TinTucId);
 
         if (!userExist) return BadRequest(new
         {
@@ -63,14 +63,14 @@ public class BinhLuanController : ControllerBase
             Message = "Không tìm thấy tin tức, id = " + model.TinTucId
         });
 
-        var binhLuan = new Models.BinhLuan
+        var binhLuan = new Binhluan
         {
-            NoiDung = model.NoiDung,
-            TinTucId = model.TinTucId,
-            UserId = model.UserId,
-            BinhLuanChaId = model.BinhLuanChaId,
+            Noidung = model.NoiDung,
+            IdTintuc = model.TinTucId,
+            IdUser = model.UserId,
+            IdBinhluan = model.BinhLuanChaId,
         };
-        _context.BinhLuans.Add(binhLuan);
+        _context.Binhluans.Add(binhLuan);
         _context.SaveChanges();
         return Ok("Save comment successfully");
     }

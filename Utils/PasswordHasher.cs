@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Text;
 
 namespace ChuyenDoiSoServer.Utils;
 
@@ -49,6 +50,35 @@ public static class PasswordHasher
             return true;
         }
         catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    public static string GetMD5(string data)
+    {
+        MD5 md5 = MD5.Create();
+        byte[] hashData = md5.ComputeHash(Encoding.UTF8.GetBytes(data));
+
+        StringBuilder returnValue = new();
+        for (int i = 0; i < hashData.Length; i++)
+        {
+            returnValue.Append(hashData[i].ToString("x2"));
+        }
+
+        return returnValue.ToString();
+    }
+
+
+    public static bool ValidateMD5(string inputData, string storedHashData)
+    {
+        string getHashInputData = GetMD5(inputData);
+
+        if (string.Compare(getHashInputData, storedHashData) == 0)
+        {
+            return true;
+        }
+        else
         {
             return false;
         }

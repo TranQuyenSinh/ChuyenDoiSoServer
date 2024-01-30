@@ -1,16 +1,20 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-namespace ChuyenDoiSoServer.Models;
-
-[Table("LinhVuc")]
-public class LinhVuc
+namespace ChuyenDoiSoServer.Models
 {
-    [Key]
-    public int Id { get; set; }
-    [StringLength(255)]
-    public string TenLinhVuc { get; set; }
-    public string? MoTa { get; set; }
+    public partial class Linhvuc
+    {
+        public Linhvuc()
+        {
+            Doanhnghieps = new HashSet<Doanhnghiep>();
+            Tintucs = new HashSet<Tintuc>();
+        }
 
-    public List<TinTuc> TinTucs { get; set; }
+        public int Id { get; set; }
+        public string Tenlinhvuc { get; set; } = null!;
+
+        public virtual ICollection<Doanhnghiep> Doanhnghieps { get; set; }
+        public virtual ICollection<Tintuc> Tintucs { get; set; }
+    }
 }

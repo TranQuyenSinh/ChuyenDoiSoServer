@@ -1,8 +1,8 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.Collections.ObjectModel;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ChuyenDoiSoServer.Api.Auth.RequestModel;
-using ChuyenDoiSoServer.Data;
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Utils;
@@ -18,10 +18,10 @@ namespace ChuyenDoiSoServer.Api.Controllers
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
-		private readonly ApplicationDbContext _context;
+		private readonly ChuyendoisoContext _context;
 		private readonly IConfiguration _configuration;
 		private readonly JwtServices _jwtServices;
-		public AuthController(ApplicationDbContext context, IConfiguration configuration, JwtServices jwtServices)
+		public AuthController(ChuyendoisoContext context, IConfiguration configuration, JwtServices jwtServices)
 		{
 			_context = context;
 			_configuration = configuration;
@@ -33,7 +33,8 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		{
 			Console.WriteLine("AUTH");
 			var user = _context.Users
-						.Include(u => u.Role)
+						.Include(u => u.UserVaitros)
+						.ThenInclude(x => x.IdVaitroNavigation)
 						.Where(x => x.Email == login.Email).FirstOrDefault();
 			if (user == null)
 				return BadRequest(new
@@ -42,7 +43,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					message = "Email không tồn tại trong hệ thống"
 				});
 
-			if (string.IsNullOrEmpty(user.Password) || !PasswordHasher.Verify(login.Password, user.Password))
+			if (string.IsNullOrEmpty(user.Password) || !PasswordHasher.ValidateMD5(login.Password, user.Password))
 				return BadRequest(new
 				{
 					code = "incorrect_password",
@@ -57,12 +58,8 @@ namespace ChuyenDoiSoServer.Api.Controllers
 				UserProfile = new
 				{
 					user.Id,
-					user.FirstName,
-					user.LastName,
-					user.Phone,
 					user.Email,
-					avatar = AppPath.GenerateImagePath(AppPath.USER_PHOTO, user.Photo),
-					role = user.Role.RoleName,
+					roles = user.UserVaitros.Select(x => x.IdVaitroNavigation.Tenvaitro).ToList(),
 				},
 				AccessToken = token,
 			});
@@ -70,94 +67,75 @@ namespace ChuyenDoiSoServer.Api.Controllers
 
 		[HttpPost("login-oauth")]
 		[AllowAnonymous]
-		public IActionResult LoginOAuth([FromBody] LoginOAuthModel login)
+		public IActionResult LoginOAuth([FromBody] LoginOAuthModel model)
 		{
 			Console.WriteLine("=========================OAUTH=========================");
 			string accessToken = "";
-			User loginUser = null;
-			var userLogin = _context.UserLogins
-						.Where(x => x.ProviderKey == login.ProviderKey && x.ProviderName == login.ProviderName)
-						.Include(l => l.User)
-						.ThenInclude(u => u.Role)
+			var user = _context.Users
+						.Where(x => x.Email == model.Email)
+						.Include(u => u.UserVaitros)
+						.ThenInclude(x => x.IdVaitroNavigation)
 						.FirstOrDefault();
 
-			// tài khoản email này đã có liên kết user
-			if (userLogin != null)
+			if (user != null)
 			{
-				accessToken = _jwtServices.GenerateAccessToken(userLogin.User);
-				loginUser = userLogin.User;
+				accessToken = _jwtServices.GenerateAccessToken(user);
 			}
 			else
 			{
-				var u = _context.Users.Where(x => x.Email == login.Email).Include(x => x.Role).FirstOrDefault();
-				// Nếu chưa có user 
-				if (u == null)
+				user = new User
 				{
-					return BadRequest(new
-					{
-						Code = "require_password_to_create",
-						Message = "Nhập mật khẩu để tạo tài khoản mới",
-					});
-
-				}
-
-				var newUserLogin = new UserLogin
-				{
-					ProviderKey = login.ProviderKey,
-					ProviderName = login.ProviderName,
-					User = u
+					Hoten = model.HoTen,
+					Email = model.Email,
+					ProviderKey = model.ProviderKey,
+					// UserVaitros = new Collection<UserVaitro>() {
+					// 	new() {
+					// 		IdUserNavigation = user,
+					// 		IdVaitro = 2
+					// 	}
+					// }
 				};
-				_context.UserLogins.Add(newUserLogin);
-
+				_context.Users.Add(user);
 				_context.SaveChanges();
-
-				loginUser = u;
-				accessToken = _jwtServices.GenerateAccessToken(u);
 			}
+
 			return Ok(new
 			{
 				UserProfile = new
 				{
-					loginUser.Id,
-					loginUser.FirstName,
-					loginUser.LastName,
-					loginUser.Phone,
-					loginUser.Email,
-					avatar = AppPath.GenerateImagePath(AppPath.USER_PHOTO, loginUser.Photo),
-					role = loginUser.Role.RoleName,
+					user.Id,
+					user.Email,
+					role = user.UserVaitros?.Select(x => x.IdVaitroNavigation.Tenvaitro).ToList(),
 				},
 				AccessToken = accessToken,
 			});
 		}
 
-
-		[HttpPost("create-oauth-password")]
+		[HttpPost("register")]
 		[AllowAnonymous]
-		public IActionResult CreateOAuthPassword([FromBody] CreateOAuthPasswordModel userInfo)
+		public IActionResult Register([FromBody] RegisterModel model)
 		{
-			Console.WriteLine("======================Create OAuth Password=========================");
-			var newUser = new User
+			Console.WriteLine("========== REGISTER ==========");
+			var isExistEmail = _context.Users.Any(x => x.Email == model.Email);
+			if (isExistEmail)
 			{
-				FirstName = userInfo.FirstName,
-				LastName = userInfo.LastName,
-				Email = userInfo.Email,
-				Role = _context.Roles.FirstOrDefault(x => x.Id == 2),
-				Password = PasswordHasher.Hash(userInfo.Password),
+				return BadRequest(new
+				{
+					Code = "email_existed",
+					Message = "Email đã tồn tại"
+				});
+			}
+			var user = new User
+			{
+				Hoten = model.HoTen,
+				Email = model.Email,
+				Trangthai = 1,
+				Password = PasswordHasher.GetMD5(model.Password)
 			};
-			_context.Users.Add(newUser);
+			_context.Add(user);
 			_context.SaveChanges();
-			return Ok("Create user successfully");
+			// ADD ROLE LOGIC BELOW THIS
+			return Ok("Sign up successfully");
 		}
-		[HttpGet("Test")]
-		public IActionResult Test()
-		{
-			Console.WriteLine("CC");
-			return BadRequest(new
-			{
-				Code = "Invalid_token",
-				Message = "Token hết hạn"
-			});
-		}
-
 	}
 }

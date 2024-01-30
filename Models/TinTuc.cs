@@ -1,36 +1,28 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-namespace ChuyenDoiSoServer.Models;
-
-[Table("TinTuc")]
-public class TinTuc
+namespace ChuyenDoiSoServer.Models
 {
-    [Key]
-    public int Id { get; set; }
+    public partial class Tintuc
+    {
+        public Tintuc()
+        {
+            Binhluans = new HashSet<Binhluan>();
+        }
 
-    [StringLength(255)]
-    public string TieuDe { get; set; }
+        public int Id { get; set; }
+        public int IdLinhvuc { get; set; }
+        public int IdUser { get; set; }
+        public string Tieude { get; set; } = null!;
+        public string Tomtat { get; set; } = null!;
+        public string Noidung { get; set; } = null!;
+        public string Hinhanh { get; set; } = null!;
+        public DateTime Ngaydang { get; set; }
+        public int Luotxem { get; set; }
+        public sbyte Trangthai { get; set; }
 
-    [StringLength(int.MaxValue)]
-    public string TomTat { get; set; }
-
-    [StringLength(100)]
-    public string TacGia { get; set; }
-
-    [StringLength(int.MaxValue)]
-    public string NoiDung { get; set; }
-
-    [StringLength(255)]
-    public string? HinhAnh { get; set; }
-
-    public int LuotXem { get; set; } = 0;
-
-    public byte TrangThai { get; set; } = 0;
-
-    public int LinhVucId { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    public LinhVuc LinhVuc { get; set; }
-    public List<BinhLuan> BinhLuans { get; set; } = new List<BinhLuan>();
+        public virtual Linhvuc IdLinhvucNavigation { get; set; } = null!;
+        public virtual User IdUserNavigation { get; set; } = null!;
+        public virtual ICollection<Binhluan> Binhluans { get; set; }
+    }
 }

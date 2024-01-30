@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using ChuyenDoiSoServer.Data;
 using ChuyenDoiSoServer.Models;
 using Microsoft.IdentityModel.Tokens;
 
@@ -25,10 +24,14 @@ public class JwtServices
         // Add payload
         var claims = new List<Claim>() {
             new (ClaimTypes.Sid, user.Id.ToString()),
-            new ("firstName", user.FirstName),
-            new ("lastName", user.LastName),
-            new (ClaimTypes.Role, user.Role.RoleName),
+            new ("Hoten", user.Hoten),
+            // new ("lastName", user.LastName),
         };
+        user.UserVaitros?.ToList().ForEach(vaitro =>
+        {
+            claims.Add(new(ClaimTypes.Role, vaitro.IdVaitroNavigation.Tenvaitro));
+        }
+        );
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

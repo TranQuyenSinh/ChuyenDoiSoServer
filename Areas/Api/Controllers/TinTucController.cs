@@ -1,5 +1,5 @@
 using ChuyenDoiSoServer.Api.TinTuc.ResponseModel;
-using ChuyenDoiSoServer.Data;
+using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +10,9 @@ namespace ChuyenDoiSoServer.Api.Controllers;
 [ApiController]
 public class TinTucController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ChuyendoisoContext _context;
 
-    public TinTucController(ApplicationDbContext context)
+    public TinTucController(ChuyendoisoContext context)
     {
         _context = context;
     }
@@ -20,13 +20,16 @@ public class TinTucController : ControllerBase
     [HttpGet("linh-vuc")]
     public IActionResult GetLinhVuc()
     {
-        return new JsonResult(_context.LinhVucs.ToList());
+        return new JsonResult(_context.Linhvucs.ToList());
     }
 
     [HttpGet("tin-tuc")]
     public IActionResult GetTinTucById([FromQuery(Name = "tinTucId")] int tinTucId)
     {
-        var tinTuc = _context.TinTucs.Find(tinTucId);
+        var tinTuc = _context.Tintucs.Where(x => x.Id == tinTucId)
+                            .Include(x => x.IdLinhvucNavigation)
+                            .Include(x => x.IdUserNavigation)
+                            .FirstOrDefault();
         if (tinTuc == null)
             return BadRequest(new
             {
@@ -41,9 +44,14 @@ public class TinTucController : ControllerBase
     [HttpGet("tintuc-by-linhvuc")]
     public IActionResult GetTinTucByLinhVuc([FromQuery(Name = "linhVucId")] int linhVucId)
     {
-        var linhVuc = _context.LinhVucs
+        var linhVuc = _context.Linhvucs
                         .Where(x => x.Id == linhVucId)
-                        .Include(x => x.TinTucs).FirstOrDefault();
+                        .Include(x => x.Tintucs)
+                        .ThenInclude(tin => tin.IdUserNavigation)
+                        .Include(x => x.Tintucs)
+                        .ThenInclude(tin => tin.IdLinhvucNavigation)
+                        .AsSplitQuery()
+                        .FirstOrDefault();
         if (linhVuc == null)
             return BadRequest(new
             {
@@ -56,8 +64,8 @@ public class TinTucController : ControllerBase
         //                 .OrderByDescending(x => x.CreatedAt)
         //                 .ToList();
 
-        var tinTucs = linhVuc.TinTucs
-                        .OrderByDescending(x => x.CreatedAt)
+        var tinTucs = linhVuc.Tintucs
+                        .OrderByDescending(x => x.Ngaydang)
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();
 
@@ -71,8 +79,10 @@ public class TinTucController : ControllerBase
         Console.WriteLine("========== Từ khóa: {0} ==========", tuKhoa);
         Console.WriteLine("========== Tìm kiếm tin tức ==========");
 
-        var tinTucs = _context.TinTucs
-                        .Where(x => x.TieuDe.Contains(tuKhoa))
+        var tinTucs = _context.Tintucs
+                        .Include(x => x.IdLinhvucNavigation)
+                        .Include(x => x.IdUserNavigation)
+                        .Where(x => x.Tieude.Contains(tuKhoa))
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();
         return new JsonResult(tinTucs);

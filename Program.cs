@@ -1,10 +1,11 @@
-using ChuyenDoiSoServer.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 using ChuyenDoiSoServer.Services;
+using ChuyenDoiSoServer.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,11 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 );
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ChuyendoisoContext>(options =>
 {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("ChuyenDoiSo"));
+	options.UseMySQL(builder.Configuration.GetConnectionString("ChuyenDoiSo"));
+	options.ConfigureWarnings(warnings =>
+		   warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
 });
 
 /* CORS */

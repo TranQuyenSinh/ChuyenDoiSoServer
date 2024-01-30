@@ -1,26 +1,25 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-namespace ChuyenDoiSoServer.Models;
-
-[Table("BinhLuan")]
-public class BinhLuan
+namespace ChuyenDoiSoServer.Models
 {
-    [Key]
-    public int Id { get; set; }
-    [StringLength(int.MaxValue)]
-    public string NoiDung { get; set; }
+    public partial class Binhluan
+    {
+        public Binhluan()
+        {
+            InverseIdBinhluanNavigation = new HashSet<Binhluan>();
+        }
 
-    public int TinTucId { get; set; }
-    public TinTuc TinTuc { get; set; }
+        public int Id { get; set; }
+        public int? IdBinhluan { get; set; }
+        public int IdUser { get; set; }
+        public int IdTintuc { get; set; }
+        public string Noidung { get; set; } = null!;
+        public DateTime Ngaydang { get; set; }
 
-    public int UserId { get; set; }
-    public User User { get; set; }
-
-    public int? BinhLuanChaId { get; set; }
-    [ForeignKey("BinhLuanChaId")]
-    public BinhLuan? BinhLuanCha { get; set; }
-    public List<BinhLuan> PhanHois { get; set; } = new List<BinhLuan>();
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public virtual Binhluan? IdBinhluanNavigation { get; set; }
+        public virtual Tintuc IdTintucNavigation { get; set; } = null!;
+        public virtual User IdUserNavigation { get; set; } = null!;
+        public virtual ICollection<Binhluan> InverseIdBinhluanNavigation { get; set; }
+    }
 }
