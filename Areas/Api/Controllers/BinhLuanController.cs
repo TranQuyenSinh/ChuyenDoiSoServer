@@ -69,6 +69,7 @@ public class BinhLuanController : ControllerBase
             IdTintuc = model.TinTucId,
             IdUser = model.UserId,
             IdBinhluan = model.BinhLuanChaId,
+            Ngaydang = DateTime.Now
         };
         _context.Binhluans.Add(binhLuan);
         _context.SaveChanges();
