@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "E7Uvpq1cXjNEQMOq6f+bIRvdgUVJirkdD7mWP6SYASRnAmC8OkX1cWa+5YH/6Jfoq8gLDloYmBiGrS8b5FRvPA==",
+  "dgSpecHash": "Zh5J/aBj4N0tOvGZ/UuIaECsW+HVrufq01/x/f8vAPlixE/7+Hss+IFp6KpXzZDNlwvpSqgHXHrv6knmsFF+MQ==",
   "success": true,
   "projectFilePath": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\ChuyenDoiSoServer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ACER\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

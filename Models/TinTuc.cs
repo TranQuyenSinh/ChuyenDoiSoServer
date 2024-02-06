@@ -10,19 +10,20 @@ namespace ChuyenDoiSoServer.Models
             Binhluans = new HashSet<Binhluan>();
         }
 
-        public int Id { get; set; }
-        public int IdLinhvuc { get; set; }
-        public int IdUser { get; set; }
+        public ulong Id { get; set; }
+        public string LinhvucId { get; set; } = null!;
+        public ulong UserId { get; set; }
         public string Tieude { get; set; } = null!;
         public string Tomtat { get; set; } = null!;
+        public string? Hinhanh { get; set; }
         public string Noidung { get; set; } = null!;
-        public string Hinhanh { get; set; } = null!;
-        public DateTime Ngaydang { get; set; }
         public int Luotxem { get; set; }
-        public sbyte Trangthai { get; set; }
+        public sbyte Duyet { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public virtual Linhvuc IdLinhvucNavigation { get; set; } = null!;
-        public virtual User IdUserNavigation { get; set; } = null!;
+        public virtual Linhvuc Linhvuc { get; set; } = null!;
+        public virtual User User { get; set; } = null!;
         public virtual ICollection<Binhluan> Binhluans { get; set; }
     }
 }

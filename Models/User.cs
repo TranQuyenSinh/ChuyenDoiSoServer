@@ -8,21 +8,31 @@ namespace ChuyenDoiSoServer.Models
         public User()
         {
             Binhluans = new HashSet<Binhluan>();
+            Chuyengia = new HashSet<Chuyengium>();
             Doanhnghieps = new HashSet<Doanhnghiep>();
+            Hiephoidoanhnghieps = new HashSet<Hiephoidoanhnghiep>();
             Tintucs = new HashSet<Tintuc>();
-            UserVaitros = new HashSet<UserVaitro>();
+            UserVaitroDuyetUsers = new HashSet<UserVaitro>();
+            UserVaitroUsers = new HashSet<UserVaitro>();
         }
 
-        public int Id { get; set; }
-        public string Hoten { get; set; } = null!;
+        public ulong Id { get; set; }
+        public string? Name { get; set; }
         public string Email { get; set; } = null!;
-        public string? Password { get; set; }
-        public string? ProviderKey { get; set; }
-        public sbyte Trangthai { get; set; }
+        public DateTime? EmailVerifiedAt { get; set; }
+        public string Password { get; set; } = null!;
+        public string? Image { get; set; }
+        public string Status { get; set; } = null!;
+        public string? RememberToken { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public virtual ICollection<Binhluan> Binhluans { get; set; }
+        public virtual ICollection<Chuyengium> Chuyengia { get; set; }
         public virtual ICollection<Doanhnghiep> Doanhnghieps { get; set; }
+        public virtual ICollection<Hiephoidoanhnghiep> Hiephoidoanhnghieps { get; set; }
         public virtual ICollection<Tintuc> Tintucs { get; set; }
-        public virtual ICollection<UserVaitro> UserVaitros { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitroDuyetUsers { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitroUsers { get; set; }
     }
 }

@@ -24,12 +24,12 @@ public class JwtServices
         // Add payload
         var claims = new List<Claim>() {
             new (ClaimTypes.Sid, user.Id.ToString()),
-            new ("Hoten", user.Hoten),
+            new ("Hoten", user.Name),
             // new ("lastName", user.LastName),
         };
-        user.UserVaitros?.ToList().ForEach(vaitro =>
+        user.UserVaitroUsers?.ToList().ForEach(vaitro =>
         {
-            claims.Add(new(ClaimTypes.Role, vaitro.IdVaitroNavigation.Tenvaitro));
+            claims.Add(new(ClaimTypes.Role, vaitro.Vaitro.Tenvaitro));
         }
         );
 

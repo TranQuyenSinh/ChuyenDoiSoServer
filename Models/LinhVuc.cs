@@ -7,14 +7,19 @@ namespace ChuyenDoiSoServer.Models
     {
         public Linhvuc()
         {
-            Doanhnghieps = new HashSet<Doanhnghiep>();
+            Chuyengia = new HashSet<Chuyengium>();
+            DoanhnghiepLoaihinhs = new HashSet<DoanhnghiepLoaihinh>();
             Tintucs = new HashSet<Tintuc>();
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; } = null!;
         public string Tenlinhvuc { get; set; } = null!;
+        public string? Hinhanh { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public virtual ICollection<Doanhnghiep> Doanhnghieps { get; set; }
+        public virtual ICollection<Chuyengium> Chuyengia { get; set; }
+        public virtual ICollection<DoanhnghiepLoaihinh> DoanhnghiepLoaihinhs { get; set; }
         public virtual ICollection<Tintuc> Tintucs { get; set; }
     }
 }

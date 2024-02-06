@@ -1,16 +1,9 @@
-using System.Collections.ObjectModel;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using ChuyenDoiSoServer.Api.Auth.RequestModel;
 using ChuyenDoiSoServer.Models;
-using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Utils;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ChuyenDoiSoServer.Api.Controllers
 {
@@ -43,22 +36,21 @@ namespace ChuyenDoiSoServer.Api.Controllers
         public IActionResult ChangePassword([FromBody] ChangePasswordModel model)
         {
             Console.WriteLine("========== CHANGE PASSWORD ==========");
-            var userId = UserUtils.GetUserId(User);
-            var user = _context.Users.Find(userId);
+            var user = _context.Users.Find(UserUtils.GetUserId(User));
             if (user == null) return BadRequest(new
             {
                 Code = "user_not_found",
                 Message = "Không tìm thấy user"
             });
 
-            if (!string.IsNullOrEmpty(user.Password) && !PasswordHasher.ValidateMD5(model.CurrentPassword, user.Password))
+            if (!string.IsNullOrEmpty(user.Password) && !BC.Verify(model.CurrentPassword, user.Password))
                 return BadRequest(new
                 {
                     Code = "password_not_match",
                     Message = "Sai mật khẩu"
                 });
 
-            user.Password = PasswordHasher.GetMD5(model.NewPassword);
+            user.Password = BC.HashPassword(model.NewPassword);
             _context.SaveChanges();
             return Ok("Thay đổi mật khẩu thành công");
         }

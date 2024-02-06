@@ -16,7 +16,7 @@ public class ChiTietTinModel
     x.LuotXem,
     x.CreatedAt
     */
-    public int Id { get; set; }
+    public ulong Id { get; set; }
     public string TieuDe { get; set; }
     public string NoiDung { get; set; }
     public string TomTat { get; set; }
@@ -24,18 +24,18 @@ public class ChiTietTinModel
     public string TacGia { get; set; }
     public string LinhVuc { get; set; }
     public int LuotXem { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     public ChiTietTinModel(Tintuc tinTuc)
     {
         Id = tinTuc.Id;
-        LinhVuc = tinTuc.IdLinhvucNavigation?.Tenlinhvuc;
+        LinhVuc = tinTuc.Linhvuc?.Tenlinhvuc;
         TieuDe = tinTuc.Tieude;
         NoiDung = tinTuc.Noidung;
         TomTat = tinTuc.Tomtat;
         HinhAnh = AppPath.GenerateImagePath(AppPath.TIN_TUC_PHOTO, tinTuc.Hinhanh);
-        TacGia = tinTuc.IdUserNavigation.Hoten;
+        TacGia = tinTuc.User.Name;
         LuotXem = tinTuc.Luotxem;
-        CreatedAt = tinTuc.Ngaydang;
+        CreatedAt = tinTuc.CreatedAt;
     }
 }

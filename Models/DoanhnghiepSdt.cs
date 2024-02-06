@@ -5,11 +5,13 @@ namespace ChuyenDoiSoServer.Models
 {
     public partial class DoanhnghiepSdt
     {
-        public int Id { get; set; }
-        public int IdDoanhnghiep { get; set; }
+        public ulong Id { get; set; }
+        public ulong DoanhnghiepId { get; set; }
         public string Sdt { get; set; } = null!;
         public string Loaisdt { get; set; } = null!;
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public virtual Doanhnghiep IdDoanhnghiepNavigation { get; set; } = null!;
+        public virtual Doanhnghiep Doanhnghiep { get; set; } = null!;
     }
 }

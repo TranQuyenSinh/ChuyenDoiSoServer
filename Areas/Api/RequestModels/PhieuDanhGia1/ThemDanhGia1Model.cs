@@ -8,6 +8,6 @@ public class ThemDanhGia1Model
 public class Diem
 {
     // Tiêu chí 1 Id
-    public int Id { get; set; }
+    public ulong Id { get; set; }
     public int Score { get; set; }
 }

@@ -20,7 +20,7 @@ public class BinhLuanController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetBinhLuanByTinTucId([FromQuery(Name = "tinTucId")] int tinTucId)
+    public IActionResult GetBinhLuanByTinTucId([FromQuery(Name = "tinTucId")] ulong tinTucId)
     {
         Console.WriteLine("======= Lấy bình luận ========");
         var tinTucExist = _context.Tintucs.Any(x => x.Id == tinTucId);
@@ -34,10 +34,10 @@ public class BinhLuanController : ControllerBase
 
 
         var binhLuans = _context.Binhluans
-                            .Where(x => x.IdTintuc == tinTucId && x.IdBinhluan == null)
-                            .Include(x => x.IdUserNavigation)
-                            .Include(x => x.InverseIdBinhluanNavigation)
-                            .ThenInclude(x => x.IdUserNavigation)
+                            .Where(x => x.TintucId == tinTucId && x.BinhluanId == null)
+                            .Include(x => x.User)
+                            .Include(x => x.InverseBinhluanNavigation)
+                            .ThenInclude(x => x.User)
                             .OrderByDescending(x => x.Ngaydang)
                             .Select(x => new BinhLuanModel(x))
                             .ToList();
@@ -66,9 +66,9 @@ public class BinhLuanController : ControllerBase
         var binhLuan = new Binhluan
         {
             Noidung = model.NoiDung,
-            IdTintuc = model.TinTucId,
-            IdUser = model.UserId,
-            IdBinhluan = model.BinhLuanChaId,
+            TintucId = model.TinTucId,
+            UserId = model.UserId,
+            BinhluanId = model.BinhLuanChaId,
             Ngaydang = DateTime.Now
         };
         _context.Binhluans.Add(binhLuan);

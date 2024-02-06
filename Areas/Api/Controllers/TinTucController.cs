@@ -24,11 +24,11 @@ public class TinTucController : ControllerBase
     }
 
     [HttpGet("tin-tuc")]
-    public IActionResult GetTinTucById([FromQuery(Name = "tinTucId")] int tinTucId)
+    public IActionResult GetTinTucById([FromQuery(Name = "tinTucId")] ulong tinTucId)
     {
         var tinTuc = _context.Tintucs.Where(x => x.Id == tinTucId)
-                            .Include(x => x.IdLinhvucNavigation)
-                            .Include(x => x.IdUserNavigation)
+                            .Include(x => x.Linhvuc)
+                            .Include(x => x.User)
                             .FirstOrDefault();
         if (tinTuc == null)
             return BadRequest(new
@@ -42,14 +42,14 @@ public class TinTucController : ControllerBase
     }
 
     [HttpGet("tintuc-by-linhvuc")]
-    public IActionResult GetTinTucByLinhVuc([FromQuery(Name = "linhVucId")] int linhVucId)
+    public IActionResult GetTinTucByLinhVuc([FromQuery(Name = "linhVucId")] string linhVucId)
     {
         var linhVuc = _context.Linhvucs
                         .Where(x => x.Id == linhVucId)
                         .Include(x => x.Tintucs)
-                        .ThenInclude(tin => tin.IdUserNavigation)
+                        .ThenInclude(tin => tin.User)
                         .Include(x => x.Tintucs)
-                        .ThenInclude(tin => tin.IdLinhvucNavigation)
+                        .ThenInclude(tin => tin.Linhvuc)
                         .AsSplitQuery()
                         .FirstOrDefault();
         if (linhVuc == null)
@@ -65,7 +65,7 @@ public class TinTucController : ControllerBase
         //                 .ToList();
 
         var tinTucs = linhVuc.Tintucs
-                        .OrderByDescending(x => x.Ngaydang)
+                        .OrderByDescending(x => x.CreatedAt)
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();
 
@@ -80,8 +80,8 @@ public class TinTucController : ControllerBase
         Console.WriteLine("========== Tìm kiếm tin tức ==========");
 
         var tinTucs = _context.Tintucs
-                        .Include(x => x.IdLinhvucNavigation)
-                        .Include(x => x.IdUserNavigation)
+                        .Include(x => x.Linhvuc)
+                        .Include(x => x.User)
                         .Where(x => x.Tieude.Contains(tuKhoa))
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();

@@ -7,19 +7,21 @@ namespace ChuyenDoiSoServer.Models
     {
         public Binhluan()
         {
-            InverseIdBinhluanNavigation = new HashSet<Binhluan>();
+            InverseBinhluanNavigation = new HashSet<Binhluan>();
         }
 
-        public int Id { get; set; }
-        public int? IdBinhluan { get; set; }
-        public int IdUser { get; set; }
-        public int IdTintuc { get; set; }
+        public ulong Id { get; set; }
+        public ulong UserId { get; set; }
+        public ulong TintucId { get; set; }
         public string Noidung { get; set; } = null!;
         public DateTime Ngaydang { get; set; }
+        public ulong? BinhluanId { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public virtual Binhluan? IdBinhluanNavigation { get; set; }
-        public virtual Tintuc IdTintucNavigation { get; set; } = null!;
-        public virtual User IdUserNavigation { get; set; } = null!;
-        public virtual ICollection<Binhluan> InverseIdBinhluanNavigation { get; set; }
+        public virtual Binhluan? BinhluanNavigation { get; set; }
+        public virtual Tintuc Tintuc { get; set; } = null!;
+        public virtual User User { get; set; } = null!;
+        public virtual ICollection<Binhluan> InverseBinhluanNavigation { get; set; }
     }
 }
