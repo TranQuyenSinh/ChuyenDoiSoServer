@@ -27,7 +27,7 @@ public class JwtServices
             new ("Hoten", user.Name),
             // new ("lastName", user.LastName),
         };
-        user.UserVaitroUser?.ToList().ForEach(vaitro =>
+        user.UserVaitro?.ToList().ForEach(vaitro =>
         {
             claims.Add(new(ClaimTypes.Role, vaitro.Vaitro.Tenvaitro));
         }

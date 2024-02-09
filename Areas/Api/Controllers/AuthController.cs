@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using ChuyenDoiSoServer.Api.Auth.RequestModel;
 using ChuyenDoiSoServer.Api.DoanhNghiep.RequestModel;
+using ChuyenDoiSoServer.Api.Models;
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Utils;
@@ -35,7 +36,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		{
 			Console.WriteLine("AUTH");
 			var user = _context.Users
-						.Include(u => u.UserVaitroUser)
+						.Include(u => u.UserVaitro)
 						.ThenInclude(x => x.Vaitro)
 						.Where(x => x.Email == login.Email).FirstOrDefault();
 			if (user == null)
@@ -52,19 +53,10 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					message = "Sai mật khẩu"
 				});
 
-			// Generate JWT
-			var token = _jwtServices.GenerateAccessToken(user);
-
 			return Ok(new
 			{
-				UserProfile = new
-				{
-					user.Id,
-					user.Email,
-					Hoten = user.Name,
-					roles = user.UserVaitroUser.Select(x => x.Vaitro.Tenvaitro).ToList(),
-				},
-				AccessToken = token,
+				UserProfile = new UserModel(user),
+				AccessToken = _jwtServices.GenerateAccessToken(user)
 			});
 		}
 
@@ -76,7 +68,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 			string accessToken = "";
 			var user = _context.Users
 						.Where(x => x.Email == model.Email)
-						.Include(u => u.UserVaitroUser)
+						.Include(u => u.UserVaitro)
 						.ThenInclude(x => x.Vaitro)
 						.FirstOrDefault();
 
@@ -100,13 +92,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 			{
 				return Ok(new
 				{
-					UserProfile = new
-					{
-						user.Id,
-						user.Email,
-						Hoten = user.Name,
-						role = user.UserVaitroUser?.Select(x => x.Vaitro.Tenvaitro).ToList(),
-					},
+					UserProfile = new UserModel(user),
 					AccessToken = _jwtServices.GenerateAccessToken(user),
 				});
 			}

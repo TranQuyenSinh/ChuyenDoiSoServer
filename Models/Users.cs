@@ -12,8 +12,7 @@ namespace ChuyenDoiSoServer.Models
             Doanhnghiep = new HashSet<Doanhnghiep>();
             Hiephoidoanhnghiep = new HashSet<Hiephoidoanhnghiep>();
             Tintuc = new HashSet<Tintuc>();
-            UserVaitroDuyetUser = new HashSet<UserVaitro>();
-            UserVaitroUser = new HashSet<UserVaitro>();
+            UserVaitro = new HashSet<UserVaitro>();
         }
 
         public ulong Id { get; set; }
@@ -32,7 +31,6 @@ namespace ChuyenDoiSoServer.Models
         public virtual ICollection<Doanhnghiep> Doanhnghiep { get; set; }
         public virtual ICollection<Hiephoidoanhnghiep> Hiephoidoanhnghiep { get; set; }
         public virtual ICollection<Tintuc> Tintuc { get; set; }
-        public virtual ICollection<UserVaitro> UserVaitroDuyetUser { get; set; }
-        public virtual ICollection<UserVaitro> UserVaitroUser { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitro { get; set; }
     }
 }

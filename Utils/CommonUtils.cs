@@ -8,6 +8,10 @@ namespace ChuyenDoiSoServer.Utils;
 public static class CommonUtils
 {
     public const string CCCD = "Uploads/daidien_doanhnghiep/cccd";
+    public const string USER_PHOTO = "Uploads/user_photo/";
+    public const string TIN_TUC_PHOTO = "Uploads/tin_tuc/";
+    public const string LOAI_HINH_PHOTO = "Uploads/loai_hinh/";
+    public const string LINH_VUC_PHOTO = "Uploads/linh_vuc/";
 
     public static List<string> UploadImage(string type, IFormFile[] files)
     {
@@ -41,6 +45,36 @@ public static class CommonUtils
         }
 
         return fileNames;
+    }
+
+    public static string UploadImage(string type, IFormFile file)
+    {
+        string fileName = "";
+        if (file != null)
+        {
+            string imgName = Path.GetFileName(Path.GetRandomFileName()) + Path.GetExtension(file.FileName);
+            var uploadPath = Path.Combine(type, imgName);
+
+            // resize the image
+            // var width = Const.STORY_THUMB_WIDTH;
+            // var height = Const.STORY_THUMB_HEIGHT;
+            // Image img = Image.FromStream(file.OpenReadStream());
+            // var cutImg = new Bitmap(img, width, height);
+
+            try
+            {
+                using var fs = new FileStream(uploadPath, FileMode.Create);
+                file.CopyTo(fs);
+                fileName = imgName;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error when uploading the file: {0}", file.FileName);
+                Console.WriteLine("Error message: {0}", e.Message);
+            }
+        }
+
+        return fileName;
     }
 
     public static void DeleteImage(string type, string fileName)

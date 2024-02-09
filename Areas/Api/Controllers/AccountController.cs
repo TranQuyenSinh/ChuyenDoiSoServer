@@ -1,8 +1,11 @@
+using System.Net;
 using ChuyenDoiSoServer.Api.Auth.RequestModel;
+using ChuyenDoiSoServer.Api.Models;
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using BC = BCrypt.Net.BCrypt;
 
 namespace ChuyenDoiSoServer.Api.Controllers
@@ -18,10 +21,15 @@ namespace ChuyenDoiSoServer.Api.Controllers
             _context = context;
         }
 
-        [HttpGet("has-password")]
-        public IActionResult CheckUserIsHasPassword()
+        [HttpGet]
+        public async Task<IActionResult> GetUserProfile()
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == UserUtils.GetUserId(User));
+            var user = await _context.Users
+                        .Where(x => x.Id == UserUtils.GetUserId(User))
+                        .Include(x => x.UserVaitro)
+                        .ThenInclude(x => x.Vaitro)
+                        .FirstOrDefaultAsync();
+
             if (user == null)
                 return BadRequest(new
                 {
@@ -29,7 +37,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
                     Message = "Không tìm thấy user"
                 });
 
-            return Ok(!string.IsNullOrEmpty(user.Password));
+            return Ok(new UserModel(user));
         }
 
         [HttpPost("change-password")]
@@ -53,6 +61,25 @@ namespace ChuyenDoiSoServer.Api.Controllers
             user.Password = BC.HashPassword(model.NewPassword);
             _context.SaveChanges();
             return Ok("Thay đổi mật khẩu thành công");
+        }
+
+        [HttpPost("change-avatar")]
+        public IActionResult ChangeAvatar([FromForm] ChangeAvatarModel model)
+        {
+            Console.WriteLine("========== CHANGE PASSWORD ==========");
+            var user = _context.Users.Find(UserUtils.GetUserId(User));
+            if (user == null) return BadRequest(new
+            {
+                Code = "user_not_found",
+                Message = "Không tìm thấy user"
+            });
+
+            CommonUtils.DeleteImage(CommonUtils.USER_PHOTO, user.Image);
+            var newImageName = CommonUtils.UploadImage(CommonUtils.USER_PHOTO, model.Avatar);
+
+            user.Image = newImageName;
+            _context.SaveChanges();
+            return Ok("Thay đổi ảnh đại diện thành công");
         }
     }
 }

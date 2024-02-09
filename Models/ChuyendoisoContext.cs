@@ -1524,10 +1524,6 @@ namespace ChuyenDoiSoServer.Models
             {
                 entity.ToTable("user_vaitro");
 
-                entity.HasIndex(e => e.CapVaitroId, "user_vaitro_cap_vaitro_id_index");
-
-                entity.HasIndex(e => e.DuyetUserId, "user_vaitro_duyet_user_id_index");
-
                 entity.HasIndex(e => e.UserId, "user_vaitro_user_id_index");
 
                 entity.HasIndex(e => e.VaitroId, "user_vaitro_vaitro_id_index");
@@ -1536,18 +1532,9 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnType("bigint(20) unsigned")
                     .HasColumnName("id");
 
-                entity.Property(e => e.CapVaitroId)
-                    .HasMaxLength(5)
-                    .HasColumnName("cap_vaitro_id");
-
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("timestamp")
                     .HasColumnName("created_at")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.DuyetUserId)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("duyet_user_id")
                     .HasDefaultValueSql("'NULL'");
 
                 entity.Property(e => e.UpdatedAt)
@@ -1563,25 +1550,13 @@ namespace ChuyenDoiSoServer.Models
                     .HasMaxLength(5)
                     .HasColumnName("vaitro_id");
 
-                entity.HasOne(d => d.CapVaitro)
-                    .WithMany(p => p.UserVaitroCapVaitro)
-                    .HasForeignKey(d => d.CapVaitroId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("user_vaitro_cap_vaitro_id_foreign");
-
-                entity.HasOne(d => d.DuyetUser)
-                    .WithMany(p => p.UserVaitroDuyetUser)
-                    .HasForeignKey(d => d.DuyetUserId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("user_vaitro_duyet_user_id_foreign");
-
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserVaitroUser)
+                    .WithMany(p => p.UserVaitro)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("user_vaitro_user_id_foreign");
 
                 entity.HasOne(d => d.Vaitro)
-                    .WithMany(p => p.UserVaitroVaitro)
+                    .WithMany(p => p.UserVaitro)
                     .HasForeignKey(d => d.VaitroId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("user_vaitro_vaitro_id_foreign");
