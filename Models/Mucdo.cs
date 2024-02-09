@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Models
     {
         public Mucdo()
         {
-            KhaosatChienluocs = new HashSet<KhaosatChienluoc>();
+            KhaosatChienluoc = new HashSet<KhaosatChienluoc>();
         }
 
         public ulong Id { get; set; }
@@ -17,6 +17,6 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual ICollection<KhaosatChienluoc> KhaosatChienluocs { get; set; }
+        public virtual ICollection<KhaosatChienluoc> KhaosatChienluoc { get; set; }
     }
 }

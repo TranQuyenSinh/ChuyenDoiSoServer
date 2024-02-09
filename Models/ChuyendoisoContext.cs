@@ -16,41 +16,41 @@ namespace ChuyenDoiSoServer.Models
         {
         }
 
-        public virtual DbSet<Binhluan> Binhluans { get; set; } = null!;
-        public virtual DbSet<Cauhoiphieu1> Cauhoiphieu1s { get; set; } = null!;
-        public virtual DbSet<Cauhoiphieu2> Cauhoiphieu2s { get; set; } = null!;
-        public virtual DbSet<Cauhoiphieu3> Cauhoiphieu3s { get; set; } = null!;
-        public virtual DbSet<ChuyengiaDanhgium> ChuyengiaDanhgia { get; set; } = null!;
-        public virtual DbSet<Chuyengium> Chuyengia { get; set; } = null!;
-        public virtual DbSet<Danhgiaphieu1> Danhgiaphieu1s { get; set; } = null!;
-        public virtual DbSet<Danhgiaphieu2> Danhgiaphieu2s { get; set; } = null!;
-        public virtual DbSet<Danhgiaphieu3> Danhgiaphieu3s { get; set; } = null!;
-        public virtual DbSet<Danhgiaphieu4> Danhgiaphieu4s { get; set; } = null!;
-        public virtual DbSet<Danhsachphieu1> Danhsachphieu1s { get; set; } = null!;
-        public virtual DbSet<Danhsachphieu2> Danhsachphieu2s { get; set; } = null!;
-        public virtual DbSet<Danhsachphieu3> Danhsachphieu3s { get; set; } = null!;
-        public virtual DbSet<Danhsachphieu4> Danhsachphieu4s { get; set; } = null!;
-        public virtual DbSet<Denghiphieu3> Denghiphieu3s { get; set; } = null!;
-        public virtual DbSet<Doanhnghiep> Doanhnghieps { get; set; } = null!;
-        public virtual DbSet<DoanhnghiepDaidien> DoanhnghiepDaidiens { get; set; } = null!;
-        public virtual DbSet<DoanhnghiepLoaihinh> DoanhnghiepLoaihinhs { get; set; } = null!;
-        public virtual DbSet<DoanhnghiepSdt> DoanhnghiepSdts { get; set; } = null!;
-        public virtual DbSet<Hiephoidoanhnghiep> Hiephoidoanhnghieps { get; set; } = null!;
-        public virtual DbSet<HiephoidoanhnghiepDaidien> HiephoidoanhnghiepDaidiens { get; set; } = null!;
-        public virtual DbSet<Khaosat> Khaosats { get; set; } = null!;
-        public virtual DbSet<KhaosatChienluoc> KhaosatChienluocs { get; set; } = null!;
-        public virtual DbSet<Linhvuc> Linhvucs { get; set; } = null!;
-        public virtual DbSet<Mohinh> Mohinhs { get; set; } = null!;
-        public virtual DbSet<MohinhLotrinh> MohinhLotrinhs { get; set; } = null!;
-        public virtual DbSet<MohinhTrucot> MohinhTrucots { get; set; } = null!;
-        public virtual DbSet<Mucdo> Mucdos { get; set; } = null!;
-        public virtual DbSet<Tintuc> Tintucs { get; set; } = null!;
-        public virtual DbSet<Traloiphieu1> Traloiphieu1s { get; set; } = null!;
-        public virtual DbSet<Traloiphieu2> Traloiphieu2s { get; set; } = null!;
-        public virtual DbSet<Traloiphieu3> Traloiphieu3s { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<UserVaitro> UserVaitros { get; set; } = null!;
-        public virtual DbSet<Vaitro> Vaitros { get; set; } = null!;
+        public virtual DbSet<Binhluan> Binhluan { get; set; } = null!;
+        public virtual DbSet<Cauhoiphieu1> Cauhoiphieu1 { get; set; } = null!;
+        public virtual DbSet<Cauhoiphieu2> Cauhoiphieu2 { get; set; } = null!;
+        public virtual DbSet<Cauhoiphieu3> Cauhoiphieu3 { get; set; } = null!;
+        public virtual DbSet<Chuyengia> Chuyengia { get; set; } = null!;
+        public virtual DbSet<ChuyengiaDanhgia> ChuyengiaDanhgia { get; set; } = null!;
+        public virtual DbSet<Danhgiaphieu1> Danhgiaphieu1 { get; set; } = null!;
+        public virtual DbSet<Danhgiaphieu2> Danhgiaphieu2 { get; set; } = null!;
+        public virtual DbSet<Danhgiaphieu3> Danhgiaphieu3 { get; set; } = null!;
+        public virtual DbSet<Danhgiaphieu4> Danhgiaphieu4 { get; set; } = null!;
+        public virtual DbSet<Danhsachphieu1> Danhsachphieu1 { get; set; } = null!;
+        public virtual DbSet<Danhsachphieu2> Danhsachphieu2 { get; set; } = null!;
+        public virtual DbSet<Danhsachphieu3> Danhsachphieu3 { get; set; } = null!;
+        public virtual DbSet<Danhsachphieu4> Danhsachphieu4 { get; set; } = null!;
+        public virtual DbSet<Denghiphieu3> Denghiphieu3 { get; set; } = null!;
+        public virtual DbSet<Doanhnghiep> Doanhnghiep { get; set; } = null!;
+        public virtual DbSet<DoanhnghiepDaidien> DoanhnghiepDaidien { get; set; } = null!;
+        public virtual DbSet<DoanhnghiepLoaihinh> DoanhnghiepLoaihinh { get; set; } = null!;
+        public virtual DbSet<DoanhnghiepSdt> DoanhnghiepSdt { get; set; } = null!;
+        public virtual DbSet<Hiephoidoanhnghiep> Hiephoidoanhnghiep { get; set; } = null!;
+        public virtual DbSet<HiephoidoanhnghiepDaidien> HiephoidoanhnghiepDaidien { get; set; } = null!;
+        public virtual DbSet<Khaosat> Khaosat { get; set; } = null!;
+        public virtual DbSet<KhaosatChienluoc> KhaosatChienluoc { get; set; } = null!;
+        public virtual DbSet<Linhvuc> Linhvuc { get; set; } = null!;
+        public virtual DbSet<Mohinh> Mohinh { get; set; } = null!;
+        public virtual DbSet<MohinhLotrinh> MohinhLotrinh { get; set; } = null!;
+        public virtual DbSet<MohinhTrucot> MohinhTrucot { get; set; } = null!;
+        public virtual DbSet<Mucdo> Mucdo { get; set; } = null!;
+        public virtual DbSet<Tintuc> Tintuc { get; set; } = null!;
+        public virtual DbSet<Traloiphieu1> Traloiphieu1 { get; set; } = null!;
+        public virtual DbSet<Traloiphieu2> Traloiphieu2 { get; set; } = null!;
+        public virtual DbSet<Traloiphieu3> Traloiphieu3 { get; set; } = null!;
+        public virtual DbSet<UserVaitro> UserVaitro { get; set; } = null!;
+        public virtual DbSet<Users> Users { get; set; } = null!;
+        public virtual DbSet<Vaitro> Vaitro { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -113,12 +113,12 @@ namespace ChuyenDoiSoServer.Models
                     .HasConstraintName("binhluan_binhluan_id_foreign");
 
                 entity.HasOne(d => d.Tintuc)
-                    .WithMany(p => p.Binhluans)
+                    .WithMany(p => p.Binhluan)
                     .HasForeignKey(d => d.TintucId)
                     .HasConstraintName("binhluan_tintuc_id_foreign");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Binhluans)
+                    .WithMany(p => p.Binhluan)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("binhluan_user_id_foreign");
             });
@@ -198,54 +198,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
             });
 
-            modelBuilder.Entity<ChuyengiaDanhgium>(entity =>
-            {
-                entity.ToTable("chuyengia_danhgia");
-
-                entity.HasIndex(e => e.ChuyengiaId, "chuyengia_danhgia_chuyengia_id_index");
-
-                entity.HasIndex(e => e.KhaosatId, "chuyengia_danhgia_khaosat_id_index");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("id");
-
-                entity.Property(e => e.ChuyengiaId)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("chuyengia_id");
-
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.Danhgia).HasColumnName("danhgia");
-
-                entity.Property(e => e.Dexuat)
-                    .HasColumnName("dexuat")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.KhaosatId)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("khaosat_id");
-
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("updated_at")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.HasOne(d => d.Chuyengia)
-                    .WithMany(p => p.ChuyengiaDanhgia)
-                    .HasForeignKey(d => d.ChuyengiaId)
-                    .HasConstraintName("chuyengia_danhgia_chuyengia_id_foreign");
-
-                entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.ChuyengiaDanhgia)
-                    .HasForeignKey(d => d.KhaosatId)
-                    .HasConstraintName("chuyengia_danhgia_khaosat_id_foreign");
-            });
-
-            modelBuilder.Entity<Chuyengium>(entity =>
+            modelBuilder.Entity<Chuyengia>(entity =>
             {
                 entity.ToTable("chuyengia");
 
@@ -321,6 +274,53 @@ namespace ChuyenDoiSoServer.Models
                     .HasConstraintName("chuyengia_user_id_foreign");
             });
 
+            modelBuilder.Entity<ChuyengiaDanhgia>(entity =>
+            {
+                entity.ToTable("chuyengia_danhgia");
+
+                entity.HasIndex(e => e.ChuyengiaId, "chuyengia_danhgia_chuyengia_id_index");
+
+                entity.HasIndex(e => e.KhaosatId, "chuyengia_danhgia_khaosat_id_index");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.ChuyengiaId)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("chuyengia_id");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.Danhgia).HasColumnName("danhgia");
+
+                entity.Property(e => e.Dexuat)
+                    .HasColumnName("dexuat")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.KhaosatId)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("khaosat_id");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.HasOne(d => d.Chuyengia)
+                    .WithMany(p => p.ChuyengiaDanhgia)
+                    .HasForeignKey(d => d.ChuyengiaId)
+                    .HasConstraintName("chuyengia_danhgia_chuyengia_id_foreign");
+
+                entity.HasOne(d => d.Khaosat)
+                    .WithMany(p => p.ChuyengiaDanhgia)
+                    .HasForeignKey(d => d.KhaosatId)
+                    .HasConstraintName("chuyengia_danhgia_khaosat_id_foreign");
+            });
+
             modelBuilder.Entity<Danhgiaphieu1>(entity =>
             {
                 entity.ToTable("danhgiaphieu1");
@@ -360,7 +360,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Danhsachphieu1)
-                    .WithMany(p => p.Danhgiaphieu1s)
+                    .WithMany(p => p.Danhgiaphieu1)
                     .HasForeignKey(d => d.Danhsachphieu1Id)
                     .HasConstraintName("danhgiaphieu1_danhsachphieu1_id_foreign");
             });
@@ -404,7 +404,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Danhsachphieu2)
-                    .WithMany(p => p.Danhgiaphieu2s)
+                    .WithMany(p => p.Danhgiaphieu2)
                     .HasForeignKey(d => d.Danhsachphieu2Id)
                     .HasConstraintName("danhgiaphieu2_danhsachphieu2_id_foreign");
             });
@@ -448,7 +448,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Danhsachphieu3)
-                    .WithMany(p => p.Danhgiaphieu3s)
+                    .WithMany(p => p.Danhgiaphieu3)
                     .HasForeignKey(d => d.Danhsachphieu3Id)
                     .HasConstraintName("danhgiaphieu3_danhsachphieu3_id_foreign");
             });
@@ -497,7 +497,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Danhsachphieu4)
-                    .WithMany(p => p.Danhgiaphieu4s)
+                    .WithMany(p => p.Danhgiaphieu4)
                     .HasForeignKey(d => d.Danhsachphieu4Id)
                     .HasConstraintName("danhgiaphieu4_danhsachphieu4_id_foreign");
             });
@@ -540,7 +540,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.Danhsachphieu1s)
+                    .WithMany(p => p.Danhsachphieu1)
                     .HasForeignKey(d => d.KhaosatId)
                     .HasConstraintName("danhsachphieu1_khaosat_id_foreign");
             });
@@ -583,7 +583,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.Danhsachphieu2s)
+                    .WithMany(p => p.Danhsachphieu2)
                     .HasForeignKey(d => d.KhaosatId)
                     .HasConstraintName("danhsachphieu2_khaosat_id_foreign");
             });
@@ -626,7 +626,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.Danhsachphieu3s)
+                    .WithMany(p => p.Danhsachphieu3)
                     .HasForeignKey(d => d.KhaosatId)
                     .HasConstraintName("danhsachphieu3_khaosat_id_foreign");
             });
@@ -669,7 +669,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.Danhsachphieu4s)
+                    .WithMany(p => p.Danhsachphieu4)
                     .HasForeignKey(d => d.KhaosatId)
                     .HasConstraintName("danhsachphieu4_khaosat_id_foreign");
             });
@@ -703,7 +703,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Danhsachphieu3)
-                    .WithMany(p => p.Denghiphieu3s)
+                    .WithMany(p => p.Denghiphieu3)
                     .HasForeignKey(d => d.Danhsachphieu3Id)
                     .HasConstraintName("denghiphieu3_danhsachphieu3_id_foreign");
             });
@@ -775,12 +775,12 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnName("user_id");
 
                 entity.HasOne(d => d.DoanhnghiepLoaihinh)
-                    .WithMany(p => p.Doanhnghieps)
+                    .WithMany(p => p.Doanhnghiep)
                     .HasForeignKey(d => d.DoanhnghiepLoaihinhId)
                     .HasConstraintName("doanhnghiep_doanhnghiep_loaihinh_id_foreign");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Doanhnghieps)
+                    .WithMany(p => p.Doanhnghiep)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("doanhnghiep_user_id_foreign");
             });
@@ -846,7 +846,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Doanhnghiep)
-                    .WithMany(p => p.DoanhnghiepDaidiens)
+                    .WithMany(p => p.DoanhnghiepDaidien)
                     .HasForeignKey(d => d.DoanhnghiepId)
                     .HasConstraintName("doanhnghiep_daidien_doanhnghiep_id_foreign");
             });
@@ -889,7 +889,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Linhvuc)
-                    .WithMany(p => p.DoanhnghiepLoaihinhs)
+                    .WithMany(p => p.DoanhnghiepLoaihinh)
                     .HasForeignKey(d => d.LinhvucId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("doanhnghiep_loaihinh_linhvuc_id_foreign");
@@ -929,7 +929,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Doanhnghiep)
-                    .WithMany(p => p.DoanhnghiepSdts)
+                    .WithMany(p => p.DoanhnghiepSdt)
                     .HasForeignKey(d => d.DoanhnghiepId)
                     .HasConstraintName("doanhnghiep_sdt_doanhnghiep_id_foreign");
             });
@@ -976,7 +976,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnName("user_id");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Hiephoidoanhnghieps)
+                    .WithMany(p => p.Hiephoidoanhnghiep)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("hiephoidoanhnghiep_user_id_foreign");
             });
@@ -1024,7 +1024,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Hiephoidoanhnghiep)
-                    .WithMany(p => p.HiephoidoanhnghiepDaidiens)
+                    .WithMany(p => p.HiephoidoanhnghiepDaidien)
                     .HasForeignKey(d => d.HiephoidoanhnghiepId)
                     .HasConstraintName("hiephoidoanhnghiep_daidien_hiephoidoanhnghiep_id_foreign");
             });
@@ -1097,17 +1097,17 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Khaosat)
-                    .WithMany(p => p.KhaosatChienluocs)
+                    .WithMany(p => p.KhaosatChienluoc)
                     .HasForeignKey(d => d.KhaosatId)
                     .HasConstraintName("khaosat_chienluoc_khaosat_id_foreign");
 
                 entity.HasOne(d => d.Mohinh)
-                    .WithMany(p => p.KhaosatChienluocs)
+                    .WithMany(p => p.KhaosatChienluoc)
                     .HasForeignKey(d => d.MohinhId)
                     .HasConstraintName("khaosat_chienluoc_mohinh_id_foreign");
 
                 entity.HasOne(d => d.Mucdo)
-                    .WithMany(p => p.KhaosatChienluocs)
+                    .WithMany(p => p.KhaosatChienluoc)
                     .HasForeignKey(d => d.MucdoId)
                     .HasConstraintName("khaosat_chienluoc_mucdo_id_foreign");
             });
@@ -1182,12 +1182,12 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.DoanhnghiepLoaihinh)
-                    .WithMany(p => p.Mohinhs)
+                    .WithMany(p => p.Mohinh)
                     .HasForeignKey(d => d.DoanhnghiepLoaihinhId)
                     .HasConstraintName("mohinh_doanhnghiep_loaihinh_id_foreign");
 
                 entity.HasOne(d => d.MohinhTrucot)
-                    .WithMany(p => p.Mohinhs)
+                    .WithMany(p => p.Mohinh)
                     .HasForeignKey(d => d.MohinhTrucotId)
                     .HasConstraintName("mohinh_mohinh_trucot_id_foreign");
             });
@@ -1240,7 +1240,7 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Mohinh)
-                    .WithMany(p => p.MohinhLotrinhs)
+                    .WithMany(p => p.MohinhLotrinh)
                     .HasForeignKey(d => d.MohinhId)
                     .HasConstraintName("mohinh_lotrinh_mohinh_id_foreign");
             });
@@ -1361,13 +1361,13 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnName("user_id");
 
                 entity.HasOne(d => d.Linhvuc)
-                    .WithMany(p => p.Tintucs)
+                    .WithMany(p => p.Tintuc)
                     .HasForeignKey(d => d.LinhvucId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("tintuc_linhvuc_id_foreign");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Tintucs)
+                    .WithMany(p => p.Tintuc)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("tintuc_user_id_foreign");
@@ -1412,12 +1412,12 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Cauhoiphieu1)
-                    .WithMany(p => p.Traloiphieu1s)
+                    .WithMany(p => p.Traloiphieu1)
                     .HasForeignKey(d => d.Cauhoiphieu1Id)
                     .HasConstraintName("traloiphieu1_cauhoiphieu1_id_foreign");
 
                 entity.HasOne(d => d.Danhgiaphieu1)
-                    .WithMany(p => p.Traloiphieu1s)
+                    .WithMany(p => p.Traloiphieu1)
                     .HasForeignKey(d => d.Danhgiaphieu1Id)
                     .HasConstraintName("traloiphieu1_danhgiaphieu1_id_foreign");
             });
@@ -1461,12 +1461,12 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Cauhoiphieu2)
-                    .WithMany(p => p.Traloiphieu2s)
+                    .WithMany(p => p.Traloiphieu2)
                     .HasForeignKey(d => d.Cauhoiphieu2Id)
                     .HasConstraintName("traloiphieu2_cauhoiphieu2_id_foreign");
 
                 entity.HasOne(d => d.Danhgiaphieu2)
-                    .WithMany(p => p.Traloiphieu2s)
+                    .WithMany(p => p.Traloiphieu2)
                     .HasForeignKey(d => d.Danhgiaphieu2Id)
                     .HasConstraintName("traloiphieu2_danhgiaphieu2_id_foreign");
             });
@@ -1510,17 +1510,84 @@ namespace ChuyenDoiSoServer.Models
                     .HasDefaultValueSql("'NULL'");
 
                 entity.HasOne(d => d.Cauhoiphieu3)
-                    .WithMany(p => p.Traloiphieu3s)
+                    .WithMany(p => p.Traloiphieu3)
                     .HasForeignKey(d => d.Cauhoiphieu3Id)
                     .HasConstraintName("traloiphieu3_cauhoiphieu3_id_foreign");
 
                 entity.HasOne(d => d.Danhgiaphieu3)
-                    .WithMany(p => p.Traloiphieu3s)
+                    .WithMany(p => p.Traloiphieu3)
                     .HasForeignKey(d => d.Danhgiaphieu3Id)
                     .HasConstraintName("traloiphieu3_danhgiaphieu3_id_foreign");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserVaitro>(entity =>
+            {
+                entity.ToTable("user_vaitro");
+
+                entity.HasIndex(e => e.CapVaitroId, "user_vaitro_cap_vaitro_id_index");
+
+                entity.HasIndex(e => e.DuyetUserId, "user_vaitro_duyet_user_id_index");
+
+                entity.HasIndex(e => e.UserId, "user_vaitro_user_id_index");
+
+                entity.HasIndex(e => e.VaitroId, "user_vaitro_vaitro_id_index");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CapVaitroId)
+                    .HasMaxLength(5)
+                    .HasColumnName("cap_vaitro_id");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.DuyetUserId)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("duyet_user_id")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("user_id");
+
+                entity.Property(e => e.VaitroId)
+                    .HasMaxLength(5)
+                    .HasColumnName("vaitro_id");
+
+                entity.HasOne(d => d.CapVaitro)
+                    .WithMany(p => p.UserVaitroCapVaitro)
+                    .HasForeignKey(d => d.CapVaitroId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("user_vaitro_cap_vaitro_id_foreign");
+
+                entity.HasOne(d => d.DuyetUser)
+                    .WithMany(p => p.UserVaitroDuyetUser)
+                    .HasForeignKey(d => d.DuyetUserId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("user_vaitro_duyet_user_id_foreign");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserVaitroUser)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("user_vaitro_user_id_foreign");
+
+                entity.HasOne(d => d.Vaitro)
+                    .WithMany(p => p.UserVaitroVaitro)
+                    .HasForeignKey(d => d.VaitroId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("user_vaitro_vaitro_id_foreign");
+            });
+
+            modelBuilder.Entity<Users>(entity =>
             {
                 entity.ToTable("users");
 
@@ -1571,73 +1638,6 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnType("timestamp")
                     .HasColumnName("updated_at")
                     .HasDefaultValueSql("'NULL'");
-            });
-
-            modelBuilder.Entity<UserVaitro>(entity =>
-            {
-                entity.ToTable("user_vaitro");
-
-                entity.HasIndex(e => e.CapVaitroId, "user_vaitro_cap_vaitro_id_index");
-
-                entity.HasIndex(e => e.DuyetUserId, "user_vaitro_duyet_user_id_index");
-
-                entity.HasIndex(e => e.UserId, "user_vaitro_user_id_index");
-
-                entity.HasIndex(e => e.VaitroId, "user_vaitro_vaitro_id_index");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("id");
-
-                entity.Property(e => e.CapVaitroId)
-                    .HasMaxLength(5)
-                    .HasColumnName("cap_vaitro_id");
-
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.DuyetUserId)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("duyet_user_id")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("updated_at")
-                    .HasDefaultValueSql("'NULL'");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnType("bigint(20) unsigned")
-                    .HasColumnName("user_id");
-
-                entity.Property(e => e.VaitroId)
-                    .HasMaxLength(5)
-                    .HasColumnName("vaitro_id");
-
-                entity.HasOne(d => d.CapVaitro)
-                    .WithMany(p => p.UserVaitroCapVaitros)
-                    .HasForeignKey(d => d.CapVaitroId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("user_vaitro_cap_vaitro_id_foreign");
-
-                entity.HasOne(d => d.DuyetUser)
-                    .WithMany(p => p.UserVaitroDuyetUsers)
-                    .HasForeignKey(d => d.DuyetUserId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("user_vaitro_duyet_user_id_foreign");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserVaitroUsers)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("user_vaitro_user_id_foreign");
-
-                entity.HasOne(d => d.Vaitro)
-                    .WithMany(p => p.UserVaitroVaitros)
-                    .HasForeignKey(d => d.VaitroId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("user_vaitro_vaitro_id_foreign");
             });
 
             modelBuilder.Entity<Vaitro>(entity =>

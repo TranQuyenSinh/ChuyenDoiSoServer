@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ChuyenDoiSoServer.Models
 {
-    public partial class Chuyengium
+    public partial class Chuyengia
     {
-        public Chuyengium()
+        public Chuyengia()
         {
-            ChuyengiaDanhgia = new HashSet<ChuyengiaDanhgium>();
+            ChuyengiaDanhgia = new HashSet<ChuyengiaDanhgia>();
         }
 
         public ulong Id { get; set; }
@@ -25,7 +25,7 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? UpdatedAt { get; set; }
 
         public virtual Linhvuc Linhvuc { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
-        public virtual ICollection<ChuyengiaDanhgium> ChuyengiaDanhgia { get; set; }
+        public virtual Users User { get; set; } = null!;
+        public virtual ICollection<ChuyengiaDanhgia> ChuyengiaDanhgia { get; set; }
     }
 }

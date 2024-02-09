@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Models
     {
         public Hiephoidoanhnghiep()
         {
-            HiephoidoanhnghiepDaidiens = new HashSet<HiephoidoanhnghiepDaidien>();
+            HiephoidoanhnghiepDaidien = new HashSet<HiephoidoanhnghiepDaidien>();
         }
 
         public ulong Id { get; set; }
@@ -20,7 +20,7 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual User User { get; set; } = null!;
-        public virtual ICollection<HiephoidoanhnghiepDaidien> HiephoidoanhnghiepDaidiens { get; set; }
+        public virtual Users User { get; set; } = null!;
+        public virtual ICollection<HiephoidoanhnghiepDaidien> HiephoidoanhnghiepDaidien { get; set; }
     }
 }

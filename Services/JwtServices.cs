@@ -14,7 +14,7 @@ public class JwtServices
     {
         _configuration = configuration;
     }
-    public string GenerateAccessToken(User user)
+    public string GenerateAccessToken(Users user)
     {
         string signingKey = _configuration["JWT:Key"];
         string issuer = _configuration["JWT:Issuer"];
@@ -27,7 +27,7 @@ public class JwtServices
             new ("Hoten", user.Name),
             // new ("lastName", user.LastName),
         };
-        user.UserVaitroUsers?.ToList().ForEach(vaitro =>
+        user.UserVaitroUser?.ToList().ForEach(vaitro =>
         {
             claims.Add(new(ClaimTypes.Role, vaitro.Vaitro.Tenvaitro));
         }

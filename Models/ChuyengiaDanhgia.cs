@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ChuyenDoiSoServer.Models
 {
-    public partial class ChuyengiaDanhgium
+    public partial class ChuyengiaDanhgia
     {
         public ulong Id { get; set; }
         public ulong ChuyengiaId { get; set; }
@@ -13,7 +13,7 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual Chuyengium Chuyengia { get; set; } = null!;
+        public virtual Chuyengia Chuyengia { get; set; } = null!;
         public virtual Khaosat Khaosat { get; set; } = null!;
     }
 }

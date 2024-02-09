@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ChuyenDoiSoServer.Api.Models;
 
 namespace ChuyenDoiSoServer.Api.DoanhNghiep.RequestModel;
 
@@ -35,11 +36,4 @@ public class DangKyModel
     public string MoTa { get; set; }
 
     public List<DienThoaiModel> DienThoaiDN { get; set; }
-}
-
-public class DienThoaiModel
-{
-    public string Sdt { get; set; }
-    public string LoaiSdt { get; set; }
-
 }

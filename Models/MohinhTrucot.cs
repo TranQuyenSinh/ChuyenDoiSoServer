@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Models
     {
         public MohinhTrucot()
         {
-            Mohinhs = new HashSet<Mohinh>();
+            Mohinh = new HashSet<Mohinh>();
         }
 
         public ulong Id { get; set; }
@@ -18,6 +18,6 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual ICollection<Mohinh> Mohinhs { get; set; }
+        public virtual ICollection<Mohinh> Mohinh { get; set; }
     }
 }

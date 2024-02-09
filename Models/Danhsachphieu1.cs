@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Models
     {
         public Danhsachphieu1()
         {
-            Danhgiaphieu1s = new HashSet<Danhgiaphieu1>();
+            Danhgiaphieu1 = new HashSet<Danhgiaphieu1>();
         }
 
         public ulong Id { get; set; }
@@ -19,6 +19,6 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? UpdatedAt { get; set; }
 
         public virtual Khaosat Khaosat { get; set; } = null!;
-        public virtual ICollection<Danhgiaphieu1> Danhgiaphieu1s { get; set; }
+        public virtual ICollection<Danhgiaphieu1> Danhgiaphieu1 { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Models
     {
         public Tintuc()
         {
-            Binhluans = new HashSet<Binhluan>();
+            Binhluan = new HashSet<Binhluan>();
         }
 
         public ulong Id { get; set; }
@@ -23,7 +23,7 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? UpdatedAt { get; set; }
 
         public virtual Linhvuc Linhvuc { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
-        public virtual ICollection<Binhluan> Binhluans { get; set; }
+        public virtual Users User { get; set; } = null!;
+        public virtual ICollection<Binhluan> Binhluan { get; set; }
     }
 }

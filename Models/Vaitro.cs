@@ -7,8 +7,8 @@ namespace ChuyenDoiSoServer.Models
     {
         public Vaitro()
         {
-            UserVaitroCapVaitros = new HashSet<UserVaitro>();
-            UserVaitroVaitros = new HashSet<UserVaitro>();
+            UserVaitroCapVaitro = new HashSet<UserVaitro>();
+            UserVaitroVaitro = new HashSet<UserVaitro>();
         }
 
         public string Id { get; set; } = null!;
@@ -17,7 +17,7 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual ICollection<UserVaitro> UserVaitroCapVaitros { get; set; }
-        public virtual ICollection<UserVaitro> UserVaitroVaitros { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitroCapVaitro { get; set; }
+        public virtual ICollection<UserVaitro> UserVaitroVaitro { get; set; }
     }
 }

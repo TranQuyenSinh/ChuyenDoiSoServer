@@ -20,13 +20,13 @@ public class TinTucController : ControllerBase
     [HttpGet("linh-vuc")]
     public IActionResult GetLinhVuc()
     {
-        return new JsonResult(_context.Linhvucs.ToList());
+        return new JsonResult(_context.Linhvuc.ToList());
     }
 
     [HttpGet("tin-tuc")]
     public IActionResult GetTinTucById([FromQuery(Name = "tinTucId")] ulong tinTucId)
     {
-        var tinTuc = _context.Tintucs.Where(x => x.Id == tinTucId)
+        var tinTuc = _context.Tintuc.Where(x => x.Id == tinTucId)
                             .Include(x => x.Linhvuc)
                             .Include(x => x.User)
                             .FirstOrDefault();
@@ -44,11 +44,11 @@ public class TinTucController : ControllerBase
     [HttpGet("tintuc-by-linhvuc")]
     public IActionResult GetTinTucByLinhVuc([FromQuery(Name = "linhVucId")] string linhVucId)
     {
-        var linhVuc = _context.Linhvucs
+        var linhVuc = _context.Linhvuc
                         .Where(x => x.Id == linhVucId)
-                        .Include(x => x.Tintucs)
+                        .Include(x => x.Tintuc)
                         .ThenInclude(tin => tin.User)
-                        .Include(x => x.Tintucs)
+                        .Include(x => x.Tintuc)
                         .ThenInclude(tin => tin.Linhvuc)
                         .AsSplitQuery()
                         .FirstOrDefault();
@@ -64,7 +64,7 @@ public class TinTucController : ControllerBase
         //                 .OrderByDescending(x => x.CreatedAt)
         //                 .ToList();
 
-        var tinTucs = linhVuc.Tintucs
+        var tinTucs = linhVuc.Tintuc
                         .OrderByDescending(x => x.CreatedAt)
                         .Select(x => new ChiTietTinModel(x))
                         .ToList();
@@ -79,7 +79,7 @@ public class TinTucController : ControllerBase
         Console.WriteLine("========== Từ khóa: {0} ==========", tuKhoa);
         Console.WriteLine("========== Tìm kiếm tin tức ==========");
 
-        var tinTucs = _context.Tintucs
+        var tinTucs = _context.Tintuc
                         .Include(x => x.Linhvuc)
                         .Include(x => x.User)
                         .Where(x => x.Tieude.Contains(tuKhoa))

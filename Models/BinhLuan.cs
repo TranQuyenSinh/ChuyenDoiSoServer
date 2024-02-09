@@ -21,7 +21,7 @@ namespace ChuyenDoiSoServer.Models
 
         public virtual Binhluan? BinhluanNavigation { get; set; }
         public virtual Tintuc Tintuc { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual Users User { get; set; } = null!;
         public virtual ICollection<Binhluan> InverseBinhluanNavigation { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using System.Security.Claims;
 using System.Text;
 using ChuyenDoiSoServer.Api.Auth.RequestModel;
 using ChuyenDoiSoServer.Api.DoanhNghiep.RequestModel;
+using ChuyenDoiSoServer.Api.DoanhNghiep.ResponseModel;
+using ChuyenDoiSoServer.Api.Models;
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Utils;
@@ -29,7 +31,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [HttpGet("linhvuc")]
         public IActionResult LayLinhVucDN()
         {
-            return Ok(_context.Linhvucs.Select(lv => new
+            return Ok(_context.Linhvuc.Select(lv => new
             {
                 Id = lv.Id,
                 TenLinhVuc = lv.Tenlinhvuc
@@ -40,15 +42,12 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [AllowAnonymous]
         public IActionResult LayLoaiHinhDN()
         {
-            return Ok(_context.DoanhnghiepLoaihinhs.Select(lv => new
-            {
-                Id = lv.Id,
-                TenLoaiHinh = lv.Tenloaihinh
-            }).ToList());
+            return Ok(_context.DoanhnghiepLoaihinh
+                    .Select(lh => new LoaiHinhModel(lh)).ToList());
         }
 
-        [HttpGet("info")]
-        public IActionResult LayThongTinDN()
+        [HttpGet("doanhnghiep-info")]
+        public IActionResult LayThongTinDoanhNghiep()
         {
             var user = _context.Users.FirstOrDefault(x => x.Id == UserUtils.GetUserId(User));
             if (user == null)
@@ -58,23 +57,15 @@ namespace ChuyenDoiSoServer.Api.Controllers
                     Message = "Không tìm thấy user"
                 });
 
-            return Ok(!string.IsNullOrEmpty(user.Password));
-        }
+            var doanhnghiep = _context.Doanhnghiep
+                                .Where(x => x.UserId == user.Id)
+                                .Include(x => x.DoanhnghiepLoaihinh)
+                                .Include(x => x.DoanhnghiepSdt)
+                                .Include(x => x.User)
+                                .Select(x => new DoanhNghiepModel(x))
+                                .FirstOrDefault();
 
-
-        public class TestModel
-        {
-            public IFormFile Image { get; set; }
-        }
-
-        [HttpPost("test")]
-        [AllowAnonymous]
-        public IActionResult Test([FromForm] TestModel model)
-        {
-            Console.WriteLine("========== TEST ==========");
-            var imgName = CommonUtils.UploadImage(CommonUtils.CCCD, new IFormFile[] { model.Image })[0];
-            Console.WriteLine("========== NAME: {0} ==========", imgName);
-            return Ok();
+            return Ok(doanhnghiep);
         }
     }
 }

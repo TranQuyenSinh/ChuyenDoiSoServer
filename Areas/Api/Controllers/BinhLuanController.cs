@@ -23,7 +23,7 @@ public class BinhLuanController : ControllerBase
     public IActionResult GetBinhLuanByTinTucId([FromQuery(Name = "tinTucId")] ulong tinTucId)
     {
         Console.WriteLine("======= Lấy bình luận ========");
-        var tinTucExist = _context.Tintucs.Any(x => x.Id == tinTucId);
+        var tinTucExist = _context.Tintuc.Any(x => x.Id == tinTucId);
 
         if (!tinTucExist)
             return BadRequest(new
@@ -33,7 +33,7 @@ public class BinhLuanController : ControllerBase
             });
 
 
-        var binhLuans = _context.Binhluans
+        var binhLuans = _context.Binhluan
                             .Where(x => x.TintucId == tinTucId && x.BinhluanId == null)
                             .Include(x => x.User)
                             .Include(x => x.InverseBinhluanNavigation)
@@ -50,7 +50,7 @@ public class BinhLuanController : ControllerBase
     {
         Console.WriteLine("======= Thêm bình luận ========");
         var userExist = _context.Users.Any(x => x.Id == model.UserId);
-        var newsExitst = _context.Tintucs.Any(x => x.Id == model.TinTucId);
+        var newsExitst = _context.Tintuc.Any(x => x.Id == model.TinTucId);
 
         if (!userExist) return BadRequest(new
         {
@@ -71,7 +71,7 @@ public class BinhLuanController : ControllerBase
             BinhluanId = model.BinhLuanChaId,
             Ngaydang = DateTime.Now
         };
-        _context.Binhluans.Add(binhLuan);
+        _context.Binhluan.Add(binhLuan);
         _context.SaveChanges();
         return Ok("Save comment successfully");
     }

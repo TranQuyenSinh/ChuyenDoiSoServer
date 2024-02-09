@@ -7,12 +7,12 @@ namespace ChuyenDoiSoServer.Models
     {
         public Khaosat()
         {
-            ChuyengiaDanhgia = new HashSet<ChuyengiaDanhgium>();
-            Danhsachphieu1s = new HashSet<Danhsachphieu1>();
-            Danhsachphieu2s = new HashSet<Danhsachphieu2>();
-            Danhsachphieu3s = new HashSet<Danhsachphieu3>();
-            Danhsachphieu4s = new HashSet<Danhsachphieu4>();
-            KhaosatChienluocs = new HashSet<KhaosatChienluoc>();
+            ChuyengiaDanhgia = new HashSet<ChuyengiaDanhgia>();
+            Danhsachphieu1 = new HashSet<Danhsachphieu1>();
+            Danhsachphieu2 = new HashSet<Danhsachphieu2>();
+            Danhsachphieu3 = new HashSet<Danhsachphieu3>();
+            Danhsachphieu4 = new HashSet<Danhsachphieu4>();
+            KhaosatChienluoc = new HashSet<KhaosatChienluoc>();
         }
 
         public ulong Id { get; set; }
@@ -22,11 +22,11 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public virtual ICollection<ChuyengiaDanhgium> ChuyengiaDanhgia { get; set; }
-        public virtual ICollection<Danhsachphieu1> Danhsachphieu1s { get; set; }
-        public virtual ICollection<Danhsachphieu2> Danhsachphieu2s { get; set; }
-        public virtual ICollection<Danhsachphieu3> Danhsachphieu3s { get; set; }
-        public virtual ICollection<Danhsachphieu4> Danhsachphieu4s { get; set; }
-        public virtual ICollection<KhaosatChienluoc> KhaosatChienluocs { get; set; }
+        public virtual ICollection<ChuyengiaDanhgia> ChuyengiaDanhgia { get; set; }
+        public virtual ICollection<Danhsachphieu1> Danhsachphieu1 { get; set; }
+        public virtual ICollection<Danhsachphieu2> Danhsachphieu2 { get; set; }
+        public virtual ICollection<Danhsachphieu3> Danhsachphieu3 { get; set; }
+        public virtual ICollection<Danhsachphieu4> Danhsachphieu4 { get; set; }
+        public virtual ICollection<KhaosatChienluoc> KhaosatChienluoc { get; set; }
     }
 }

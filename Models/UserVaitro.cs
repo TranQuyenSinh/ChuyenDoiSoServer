@@ -14,8 +14,8 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? UpdatedAt { get; set; }
 
         public virtual Vaitro CapVaitro { get; set; } = null!;
-        public virtual User? DuyetUser { get; set; }
-        public virtual User User { get; set; } = null!;
+        public virtual Users? DuyetUser { get; set; }
+        public virtual Users User { get; set; } = null!;
         public virtual Vaitro Vaitro { get; set; } = null!;
     }
 }

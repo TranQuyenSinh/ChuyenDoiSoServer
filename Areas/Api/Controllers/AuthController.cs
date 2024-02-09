@@ -35,7 +35,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		{
 			Console.WriteLine("AUTH");
 			var user = _context.Users
-						.Include(u => u.UserVaitroUsers)
+						.Include(u => u.UserVaitroUser)
 						.ThenInclude(x => x.Vaitro)
 						.Where(x => x.Email == login.Email).FirstOrDefault();
 			if (user == null)
@@ -62,7 +62,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					user.Id,
 					user.Email,
 					Hoten = user.Name,
-					roles = user.UserVaitroUsers.Select(x => x.Vaitro.Tenvaitro).ToList(),
+					roles = user.UserVaitroUser.Select(x => x.Vaitro.Tenvaitro).ToList(),
 				},
 				AccessToken = token,
 			});
@@ -76,7 +76,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 			string accessToken = "";
 			var user = _context.Users
 						.Where(x => x.Email == model.Email)
-						.Include(u => u.UserVaitroUsers)
+						.Include(u => u.UserVaitroUser)
 						.ThenInclude(x => x.Vaitro)
 						.FirstOrDefault();
 
@@ -88,6 +88,14 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					Message = "Không tìm thấy user"
 				});
 			}
+			else if (user.Status.ToLower() == "inactive")
+			{
+				return BadRequest(new
+				{
+					Code = "wating_for_approval",
+					Message = "Tài khoản đang chờ xét duyệt"
+				});
+			}
 			else
 			{
 				return Ok(new
@@ -97,7 +105,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 						user.Id,
 						user.Email,
 						Hoten = user.Name,
-						role = user.UserVaitroUsers?.Select(x => x.Vaitro.Tenvaitro).ToList(),
+						role = user.UserVaitroUser?.Select(x => x.Vaitro.Tenvaitro).ToList(),
 					},
 					AccessToken = _jwtServices.GenerateAccessToken(user),
 				});
@@ -122,7 +130,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					});
 				}
 
-				var user = new User
+				var user = new Users
 				{
 					Name = model.Name,
 					Email = model.Email,
@@ -151,16 +159,16 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					UpdatedAt = DateTime.Now
 				};
 
-				_context.Doanhnghieps.Add(doanhNghiep);
+				_context.Doanhnghiep.Add(doanhNghiep);
 				_context.SaveChanges();
 
 				model.DienThoaiDN.ForEach(sdt =>
 				{
-					_context.DoanhnghiepSdts.Add(
+					_context.DoanhnghiepSdt.Add(
 						new DoanhnghiepSdt
 						{
 							Sdt = sdt.Sdt,
-							Loaisdt = sdt.LoaiSdt,
+							Loaisdt = sdt.Loaisdt,
 							DoanhnghiepId = doanhNghiep.Id
 						});
 				});
@@ -180,7 +188,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					CreatedAt = DateTime.Now,
 					UpdatedAt = DateTime.Now
 				};
-				_context.DoanhnghiepDaidiens.Add(daiDienDN);
+				_context.DoanhnghiepDaidien.Add(daiDienDN);
 				_context.SaveChanges();
 				transaction.Commit();
 			}

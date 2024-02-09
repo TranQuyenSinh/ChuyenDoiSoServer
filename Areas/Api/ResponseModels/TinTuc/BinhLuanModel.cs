@@ -11,7 +11,7 @@ public class BinhLuanModel
     public List<BinhLuanModel> PhanHois { get; set; } = new List<BinhLuanModel>();
     public DateTime CreatedAt { get; set; }
 
-    public BinhLuanModel(Models.Binhluan binhLuan)
+    public BinhLuanModel(Binhluan binhLuan)
     {
         Id = binhLuan.Id;
         NoiDung = binhLuan.Noidung;

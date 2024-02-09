@@ -7,8 +7,8 @@ namespace ChuyenDoiSoServer.Models
     {
         public Doanhnghiep()
         {
-            DoanhnghiepDaidiens = new HashSet<DoanhnghiepDaidien>();
-            DoanhnghiepSdts = new HashSet<DoanhnghiepSdt>();
+            DoanhnghiepDaidien = new HashSet<DoanhnghiepDaidien>();
+            DoanhnghiepSdt = new HashSet<DoanhnghiepSdt>();
         }
 
         public ulong Id { get; set; }
@@ -27,8 +27,8 @@ namespace ChuyenDoiSoServer.Models
         public DateTime? UpdatedAt { get; set; }
 
         public virtual DoanhnghiepLoaihinh DoanhnghiepLoaihinh { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
-        public virtual ICollection<DoanhnghiepDaidien> DoanhnghiepDaidiens { get; set; }
-        public virtual ICollection<DoanhnghiepSdt> DoanhnghiepSdts { get; set; }
+        public virtual Users User { get; set; } = null!;
+        public virtual ICollection<DoanhnghiepDaidien> DoanhnghiepDaidien { get; set; }
+        public virtual ICollection<DoanhnghiepSdt> DoanhnghiepSdt { get; set; }
     }
 }
