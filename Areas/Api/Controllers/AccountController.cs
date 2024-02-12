@@ -66,7 +66,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [HttpPost("change-avatar")]
         public IActionResult ChangeAvatar([FromForm] ChangeAvatarModel model)
         {
-            Console.WriteLine("========== CHANGE PASSWORD ==========");
+            Console.WriteLine("========== CHANGE AVATAR ==========");
             var user = _context.Users.Find(UserUtils.GetUserId(User));
             if (user == null) return BadRequest(new
             {
@@ -74,7 +74,10 @@ namespace ChuyenDoiSoServer.Api.Controllers
                 Message = "Không tìm thấy user"
             });
 
-            CommonUtils.DeleteImage(CommonUtils.USER_PHOTO, user.Image);
+            if (!string.IsNullOrEmpty(user.Image))
+            {
+                CommonUtils.DeleteImage(CommonUtils.USER_PHOTO, user.Image);
+            }
             var newImageName = CommonUtils.UploadImage(CommonUtils.USER_PHOTO, model.Avatar);
 
             user.Image = newImageName;

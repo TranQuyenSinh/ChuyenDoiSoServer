@@ -8,6 +8,8 @@ public class DienThoaiModel
     public string Sdt { get; set; }
     public string Loaisdt { get; set; }
 
+    public DienThoaiModel() { }
+
     public DienThoaiModel(DoanhnghiepSdt dnsdt)
     {
         Id = dnsdt.Id;

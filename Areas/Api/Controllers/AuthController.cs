@@ -112,7 +112,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					return BadRequest(new
 					{
 						Code = "email_existed",
-						Message = "Email đã tồn tại"
+						Message = "Email đăng ký đã tồn tại"
 					});
 				}
 
@@ -177,6 +177,18 @@ namespace ChuyenDoiSoServer.Api.Controllers
 				_context.DoanhnghiepDaidien.Add(daiDienDN);
 				_context.SaveChanges();
 				transaction.Commit();
+			}
+			catch (DbUpdateException e)
+			{
+				transaction.Rollback();
+				Console.WriteLine("========== ROLLBACK ==========");
+				if (e.InnerException.Message.Contains("for key 'doanhnghiep_daidien_email_unique'"))
+					return BadRequest(new
+					{
+						Code = "email_daidien_unique",
+						Message = "Email đại diện doanh nghiệp đã tồn tại"
+					});
+				else throw new Exception();
 			}
 			catch (Exception e)
 			{
