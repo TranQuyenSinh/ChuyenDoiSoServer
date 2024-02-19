@@ -7,7 +7,7 @@ namespace ChuyenDoiSoServer.Utils;
 
 public static class CommonUtils
 {
-    public const string CCCD = "Uploads/daidien_doanhnghiep/cccd";
+    public const string CCCD = "Uploads/daidien_doanhnghiep/cccd/";
     public const string USER_PHOTO = "Uploads/user_photo/";
     public const string TIN_TUC_PHOTO = "Uploads/tin_tuc/";
     public const string LOAI_HINH_PHOTO = "Uploads/loai_hinh/";

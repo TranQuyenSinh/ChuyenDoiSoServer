@@ -6,6 +6,7 @@ public static class AppPath
     public const string TIN_TUC_PHOTO = "/contents/tin_tuc/";
     public const string LOAI_HINH_PHOTO = "/contents/loai_hinh/";
     public const string LINH_VUC_PHOTO = "contents/linh_vuc/";
+    public const string CCCD = "/contents/daidien_doanhnghiep/cccd/";
 
     public static string GenerateImagePath(string type, string? image)
     {

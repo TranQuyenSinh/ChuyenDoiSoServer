@@ -62,6 +62,8 @@ namespace ChuyenDoiSoServer.Api.Controllers
                                 .Include(x => x.DoanhnghiepLoaihinh)
                                 .Include(x => x.DoanhnghiepSdt)
                                 .Include(x => x.User)
+                                .Include(x => x.DoanhnghiepDaidien)
+                                .AsSplitQuery()
                                 .Select(x => new DoanhNghiepModel(x))
                                 .FirstOrDefault();
 

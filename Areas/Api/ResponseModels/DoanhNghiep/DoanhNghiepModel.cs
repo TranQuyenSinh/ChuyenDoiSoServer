@@ -16,8 +16,10 @@ public class DoanhNghiepModel
     public DateTime Ngaylap { get; set; }
     public string? Mota { get; set; }
     public string? Trangthai { get; set; }
-    public virtual LoaiHinhModel Loaihinh { get; set; } = null!;
-    public virtual List<DienThoaiModel> Dienthoais { get; set; }
+    public LoaiHinhModel Loaihinh { get; set; } = null!;
+    public List<DienThoaiModel> Dienthoais { get; set; }
+    public DaiDienDoanhNghiepModel Daidien { get; set; }
+
 
     public DoanhNghiepModel(Doanhnghiep dn)
     {
@@ -33,6 +35,7 @@ public class DoanhNghiepModel
         Trangthai = dn.User?.Status?.ToLower();
 
         Loaihinh = new LoaiHinhModel(dn.DoanhnghiepLoaihinh);
+        Daidien = new DaiDienDoanhNghiepModel(dn.DoanhnghiepDaidien.FirstOrDefault());
         Dienthoais = dn.DoanhnghiepSdt?.Select(x => new DienThoaiModel(x)).ToList();
     }
 }
