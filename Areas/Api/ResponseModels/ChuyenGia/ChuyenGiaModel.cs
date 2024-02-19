@@ -16,11 +16,14 @@ public class ChuyenGiaModel
 
     public LinhVucModel LinhVuc { get; set; } = null!;
 
+    public ChuyenGiaModel() { }
+
+    // Include User, LinhVuc
     public ChuyenGiaModel(Chuyengia cg)
     {
         Id = cg.Id;
         TenChuyenGia = cg.Tenchuyengia;
-        HinhAnh = AppPath.GenerateImagePath(AppPath.USER_PHOTO, cg.User?.Image);
+        HinhAnh = AppPath.GenerateImagePath(AppPath.USER_PHOTO, cg.User.Image);
         Email = cg.Email;
         Sdt = cg.Sdt;
         DiaChi = cg.Diachi;
