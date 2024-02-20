@@ -24,7 +24,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index([FromQuery(Name = "linhVucId")] string linhVucId)
         {
-            Console.WriteLine("========== Lấy DS Chuyên gia  ==========");
             var data = await _context.Chuyengia
                                 .Where(x => x.LinhvucId == linhVucId)
                                 .Include(x => x.Linhvuc)

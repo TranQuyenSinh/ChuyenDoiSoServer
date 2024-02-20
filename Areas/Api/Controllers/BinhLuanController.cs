@@ -22,7 +22,6 @@ public class BinhLuanController : ControllerBase
     [HttpGet]
     public IActionResult GetBinhLuanByTinTucId([FromQuery(Name = "tinTucId")] ulong tinTucId)
     {
-        Console.WriteLine("======= Lấy bình luận ========");
         var tinTucExist = _context.Tintuc.Any(x => x.Id == tinTucId);
 
         if (!tinTucExist)
@@ -48,7 +47,6 @@ public class BinhLuanController : ControllerBase
     [HttpPost]
     public IActionResult ThemBinhLuan([FromBody] ThemBinhLuanModel model)
     {
-        Console.WriteLine("======= Thêm bình luận ========");
         var userExist = _context.Users.Any(x => x.Id == model.UserId);
         var newsExitst = _context.Tintuc.Any(x => x.Id == model.TinTucId);
 

@@ -59,11 +59,6 @@ public class TinTucController : ControllerBase
                 Message = "Không tìm thấy lĩnh vực"
             });
 
-        // var tinTucs = linhVuc.TinTucs
-        //                 .Where(x => x.TrangThai == 1)
-        //                 .OrderByDescending(x => x.CreatedAt)
-        //                 .ToList();
-
         var tinTucs = linhVuc.Tintuc
                         .OrderByDescending(x => x.CreatedAt)
                         .Select(x => new ChiTietTinModel(x))
@@ -75,10 +70,6 @@ public class TinTucController : ControllerBase
     [HttpGet("timkiem-tintuc")]
     public IActionResult TimKiemTinTucByTuKhoa([FromQuery(Name = "tuKhoa")] string tuKhoa)
     {
-        Console.WriteLine("========== Tìm kiếm tin tức ==========");
-        Console.WriteLine("========== Từ khóa: {0} ==========", tuKhoa);
-        Console.WriteLine("========== Tìm kiếm tin tức ==========");
-
         var tinTucs = _context.Tintuc
                         .Include(x => x.Linhvuc)
                         .Include(x => x.User)

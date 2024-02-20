@@ -34,7 +34,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		[AllowAnonymous]
 		public IActionResult LoginWithPassword([FromBody] LoginModel login)
 		{
-			Console.WriteLine("AUTH");
 			var user = _context.Users
 						.Include(u => u.UserVaitro)
 						.ThenInclude(x => x.Vaitro)
@@ -64,7 +63,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		[AllowAnonymous]
 		public IActionResult LoginNoPassword([FromBody] LoginNoPasswordModel model)
 		{
-			Console.WriteLine("=========================OAUTH=========================");
 			string accessToken = "";
 			var user = _context.Users
 						.Where(x => x.Email == model.Email)
@@ -102,7 +100,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		[HttpPost("register")]
 		public IActionResult DangKyThongTinDN([FromForm] DangKyModel model)
 		{
-			Console.WriteLine("========== ĐĂNG KÝ DOANH NGHIỆP ==========");
 			using var transaction = _context.Database.BeginTransaction();
 			try
 			{
@@ -126,6 +123,9 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					UpdatedAt = DateTime.Now
 				};
 				_context.Add(user);
+				_context.SaveChanges();
+
+				_context.UserVaitro.Add(new UserVaitro { User = user, VaitroId = "dn" });
 				_context.SaveChanges();
 
 				var doanhNghiep = new Doanhnghiep

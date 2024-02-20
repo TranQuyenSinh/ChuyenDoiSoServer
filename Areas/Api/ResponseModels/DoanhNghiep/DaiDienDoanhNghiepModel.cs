@@ -1,7 +1,7 @@
 using ChuyenDoiSoServer.Models;
 using ChuyenDoiSoServer.Utils;
 
-namespace ChuyenDoiSoServer.Api.Models;
+namespace ChuyenDoiSoServer.Api.DoanhNghiep.ResponseModel;
 
 public class DaiDienDoanhNghiepModel
 {

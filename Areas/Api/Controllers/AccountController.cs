@@ -43,7 +43,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [HttpPost("change-password")]
         public IActionResult ChangePassword([FromBody] ChangePasswordModel model)
         {
-            Console.WriteLine("========== CHANGE PASSWORD ==========");
             var user = _context.Users.Find(UserUtils.GetUserId(User));
             if (user == null) return BadRequest(new
             {
@@ -66,7 +65,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
         [HttpPost("change-avatar")]
         public IActionResult ChangeAvatar([FromForm] ChangeAvatarModel model)
         {
-            Console.WriteLine("========== CHANGE AVATAR ==========");
             var user = _context.Users.Find(UserUtils.GetUserId(User));
             if (user == null) return BadRequest(new
             {
