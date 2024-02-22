@@ -25,15 +25,15 @@ public class DangKyModel
     public ulong LoaiHinhId { get; set; }
     // public int LinhVucId { get; set; }
     public string TenTiengViet { get; set; }
-    public string TenTiengAnh { get; set; }
-    public string TenVietTat { get; set; }
+    public string? TenTiengAnh { get; set; }
+    public string? TenVietTat { get; set; }
     // public string EmailDN { get; set; }
     public string DiaChiDN { get; set; }
     public string MaSoThue { get; set; }
-    public string Fax { get; set; }
+    public string? Fax { get; set; }
     public int SoLuongNhanSu { get; set; }
     public DateTime NgayLap { get; set; }
-    public string MoTa { get; set; }
+    public string? MoTa { get; set; }
 
-    public List<DienThoaiModel> DienThoaiDN { get; set; }
+    public List<DienThoaiModel>? DienThoaiDN { get; set; }
 }

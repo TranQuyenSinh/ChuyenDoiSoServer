@@ -22,6 +22,12 @@ builder.Services.AddDbContext<ChuyendoisoContext>(options =>
 		   warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
 });
 
+/* ================ Send Mail Service ================ */
+builder.Services.AddOptions();
+var mailsettings = builder.Configuration.GetSection("MailSettings");
+builder.Services.Configure<MailSettings>(mailsettings);
+builder.Services.AddSingleton<IEmailSender, SendMailService>();
+
 /* CORS */
 builder.Services.AddCors(options =>
 {

@@ -24,11 +24,13 @@ namespace ChuyenDoiSoServer.Api.Controllers
 		private readonly ChuyendoisoContext _context;
 		private readonly IConfiguration _configuration;
 		private readonly JwtServices _jwtServices;
-		public AuthController(ChuyendoisoContext context, IConfiguration configuration, JwtServices jwtServices)
+		private readonly IEmailSender _emailSender;
+		public AuthController(ChuyendoisoContext context, IConfiguration configuration, JwtServices jwtServices, IEmailSender emailSender)
 		{
 			_context = context;
 			_configuration = configuration;
 			_jwtServices = jwtServices;
+			_emailSender = emailSender;
 		}
 		[HttpPost("login-password")]
 		[AllowAnonymous]
@@ -38,12 +40,12 @@ namespace ChuyenDoiSoServer.Api.Controllers
 						.Include(u => u.UserVaitro)
 						.ThenInclude(x => x.Vaitro)
 						.Where(x => x.Email == login.Email).FirstOrDefault();
-			if (user == null)
-				return BadRequest(new
-				{
-					code = "email_not_found",
-					message = "Email không tồn tại trong hệ thống"
-				});
+			string code, message;
+			(code, message) = ValidateUser(user);
+			if (!string.IsNullOrEmpty(code) || !string.IsNullOrEmpty(message))
+			{
+				return BadRequest(new { code, message });
+			}
 
 			if (string.IsNullOrEmpty(user.Password) || !BC.Verify(login.Password, user.Password))
 				return BadRequest(new
@@ -51,7 +53,6 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					code = "incorrect_password",
 					message = "Sai mật khẩu"
 				});
-
 			return Ok(new
 			{
 				UserProfile = new UserModel(user),
@@ -61,7 +62,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 
 		[HttpPost("login-no-password")]
 		[AllowAnonymous]
-		public IActionResult LoginNoPassword([FromBody] LoginNoPasswordModel model)
+		public async Task<IActionResult> LoginNoPassword([FromBody] LoginNoPasswordModel model)
 		{
 			string accessToken = "";
 			var user = _context.Users
@@ -69,40 +70,50 @@ namespace ChuyenDoiSoServer.Api.Controllers
 						.Include(u => u.UserVaitro)
 						.ThenInclude(x => x.Vaitro)
 						.FirstOrDefault();
+			string code, message;
+			(code, message) = ValidateUser(user);
+			if (!string.IsNullOrEmpty(code) || !string.IsNullOrEmpty(message))
+			{
+				return BadRequest(new { code, message });
+			}
 
+			return Ok(new
+			{
+				UserProfile = new UserModel(user),
+				AccessToken = _jwtServices.GenerateAccessToken(user),
+			});
+
+		}
+
+		private static (string, string) ValidateUser(Users? user)
+		{
+			string code = "", message = "";
 			if (user == null)
 			{
-				return BadRequest(new
-				{
-					Code = "user_not_found",
-					Message = "Không tìm thấy user"
-				});
+				code = "email_not_found";
+				message = "Email không tồn tại trong hệ thống";
+			}
+			else if (user.EmailVerifiedAt == null)
+			{
+				code = "email_not_verified";
+				message = "Email chưa xác nhận";
 			}
 			else if (user.Status.ToLower() == "inactive")
 			{
-				return BadRequest(new
-				{
-					Code = "wating_for_approval",
-					Message = "Tài khoản đang chờ xét duyệt"
-				});
+				code = "wating_for_approval";
+				message = "Tài khoản đang chờ xét duyệt";
 			}
-			else
-			{
-				return Ok(new
-				{
-					UserProfile = new UserModel(user),
-					AccessToken = _jwtServices.GenerateAccessToken(user),
-				});
-			}
+			return (code, message);
 		}
 
-
 		[HttpPost("register")]
-		public IActionResult DangKyThongTinDN([FromForm] DangKyModel model)
+		public async Task<IActionResult> DangKyThongTinDN([FromForm] DangKyModel model)
 		{
 			using var transaction = _context.Database.BeginTransaction();
 			try
 			{
+				var verifyToken = Guid.NewGuid().ToString();
+
 				if (_context.Users.Any(x => x.Email == model.Email))
 				{
 					Console.WriteLine("========== EMAIL ĐÃ TỒN TẠI ==========");
@@ -118,7 +129,8 @@ namespace ChuyenDoiSoServer.Api.Controllers
 					Name = model.Name,
 					Email = model.Email,
 					Password = BC.HashPassword(model.Password, 10),
-					Status = "Active",
+					Status = "Inactive",
+					RememberToken = verifyToken,
 					CreatedAt = DateTime.Now,
 					UpdatedAt = DateTime.Now
 				};
@@ -177,6 +189,11 @@ namespace ChuyenDoiSoServer.Api.Controllers
 				_context.DoanhnghiepDaidien.Add(daiDienDN);
 				_context.SaveChanges();
 				transaction.Commit();
+
+				// Gửi mail xác nhận
+				string subject, body;
+				(subject, body) = EmailUtils.TaoMailKichHoat(user.Id, verifyToken);
+				await _emailSender.SendEmailAsync(user.Email, subject, body);
 			}
 			catch (DbUpdateException e)
 			{
@@ -202,5 +219,7 @@ namespace ChuyenDoiSoServer.Api.Controllers
 			}
 			return Ok("OK");
 		}
+
+
 	}
 }
