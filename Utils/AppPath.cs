@@ -8,7 +8,7 @@ public static class AppPath
     public const string LINH_VUC_PHOTO = "contents/linh_vuc/";
     public const string CCCD = "/contents/daidien_doanhnghiep/cccd/";
 
-    public static string GenerateImagePath(string type, string? image)
+    public static string GenerateImagePath(string type, string? image, bool useLocalhost = false)
     {
         if (string.IsNullOrEmpty(image))
             return null;
@@ -16,6 +16,6 @@ public static class AppPath
         string rootPath = Environment.GetEnvironmentVariable("ASPNETCORE_APPLICATION_URL");
         string imagePath = Path.Combine(type, image);
 
-        return rootPath + imagePath;
+        return useLocalhost ? "https://localhost:8080" + imagePath : rootPath + imagePath;
     }
 }

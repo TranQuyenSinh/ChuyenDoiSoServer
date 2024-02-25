@@ -9,6 +9,7 @@ namespace ChuyenDoiSoServer.Models
         {
             DoanhnghiepDaidien = new HashSet<DoanhnghiepDaidien>();
             DoanhnghiepSdt = new HashSet<DoanhnghiepSdt>();
+            Khaosat = new HashSet<Khaosat>();
         }
 
         public ulong Id { get; set; }
@@ -30,5 +31,6 @@ namespace ChuyenDoiSoServer.Models
         public virtual Users User { get; set; } = null!;
         public virtual ICollection<DoanhnghiepDaidien> DoanhnghiepDaidien { get; set; }
         public virtual ICollection<DoanhnghiepSdt> DoanhnghiepSdt { get; set; }
+        public virtual ICollection<Khaosat> Khaosat { get; set; }
     }
 }

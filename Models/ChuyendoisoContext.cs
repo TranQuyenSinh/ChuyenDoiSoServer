@@ -1033,6 +1033,8 @@ namespace ChuyenDoiSoServer.Models
             {
                 entity.ToTable("khaosat");
 
+                entity.HasIndex(e => e.DoanhnghiepId, "doanhnghiep_khaosat_id_foreign_idx");
+
                 entity.Property(e => e.Id)
                     .HasColumnType("bigint(20) unsigned")
                     .HasColumnName("id");
@@ -1041,6 +1043,10 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnType("timestamp")
                     .HasColumnName("created_at")
                     .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.DoanhnghiepId)
+                    .HasColumnType("bigint(20) unsigned")
+                    .HasColumnName("doanhnghiep_id");
 
                 entity.Property(e => e.Thoigiantao)
                     .HasColumnType("date")
@@ -1058,6 +1064,11 @@ namespace ChuyenDoiSoServer.Models
                     .HasColumnType("timestamp")
                     .HasColumnName("updated_at")
                     .HasDefaultValueSql("'NULL'");
+
+                entity.HasOne(d => d.Doanhnghiep)
+                    .WithMany(p => p.Khaosat)
+                    .HasForeignKey(d => d.DoanhnghiepId)
+                    .HasConstraintName("doanhnghiep_khaosat_id_foreign");
             });
 
             modelBuilder.Entity<KhaosatChienluoc>(entity =>

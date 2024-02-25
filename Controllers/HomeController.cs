@@ -18,7 +18,7 @@ namespace ChuyenDoiSoServer.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			return RedirectToAction("Index", "Home", new { Area = "Admin" });
 		}
 
 		[HttpGet("kich-hoat")]

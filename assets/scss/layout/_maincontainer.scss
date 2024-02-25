@@ -1,0 +1,7 @@
+@import '../common/variables';
+
+.main-container {
+    padding-left: $sidebar-width;
+    overflow    : hidden;
+    min-height  : 100vh;
+}

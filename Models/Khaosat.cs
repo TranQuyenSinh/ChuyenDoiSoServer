@@ -16,12 +16,14 @@ namespace ChuyenDoiSoServer.Models
         }
 
         public ulong Id { get; set; }
+        public ulong DoanhnghiepId { get; set; }
         public DateTime Thoigiantao { get; set; }
         public int Tongdiem { get; set; }
         public int Trangthai { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
+        public virtual Doanhnghiep Doanhnghiep { get; set; } = null!;
         public virtual ICollection<ChuyengiaDanhgia> ChuyengiaDanhgia { get; set; }
         public virtual ICollection<Danhsachphieu1> Danhsachphieu1 { get; set; }
         public virtual ICollection<Danhsachphieu2> Danhsachphieu2 { get; set; }

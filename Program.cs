@@ -6,6 +6,9 @@ using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ChuyenDoiSoServer.Admin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,14 @@ builder.Services.AddDbContext<ChuyendoisoContext>(options =>
 	options.UseMySQL(builder.Configuration.GetConnectionString("ChuyenDoiSo"));
 	options.ConfigureWarnings(warnings =>
 		   warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+});
+
+/* ================ Config Session ================ */
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+	options.Cookie.Name = "ChuyenDoiSo";
+	options.IdleTimeout = new TimeSpan(0, 60, 0);
 });
 
 /* ================ Send Mail Service ================ */
@@ -86,19 +97,20 @@ app.UseStaticFiles(new StaticFileOptions()
 	RequestPath = "/contents"
 });
 
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapAreaControllerRoute(
+	name: "Map_Area",
+	pattern: "{Area=Admin}/{controller=Home}/{action=Index}/{id?}", areaName: "Admin");
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}",
 	dataTokens: new { pathBase = "localhost" });
-app.MapAreaControllerRoute(
-	name: "Map_Area",
-	pattern: "{Area=Api}/{controller=Home}/{action=Index}/{id?}", areaName: "Api");
 app.MapRazorPages();
 
 app.Run();

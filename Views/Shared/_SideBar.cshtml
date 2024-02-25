@@ -1,0 +1,36 @@
+@{
+    var ActiveTab = ViewData["ActiveTab"]?.ToString();
+}
+
+<div class="sidebar">
+    <nav class='navbar p-0  navbar-dark'>
+        @* Logo *@
+        <img src="~/images/logo_2.png" width="100%" />
+        @* Items *@
+        <div class='navbar-nav w-100 mt-2 me-4'>
+            <a href="#" class="nav-item nav-link @(ActiveTab == "TrangChu" ? "active" : "")">
+                <i class=" fas fa-home"></i>
+                Trang chủ
+            </a>
+        </div>
+        <div class='navbar-nav w-100 mt-2 me-4'>
+            <a href="#" class="nav-item nav-link @(ActiveTab == "TinTuc" ? "active" : "")">
+                <i class="far fa-file-alt"></i>
+                Quản lý tin tức
+            </a>
+        </div>
+        <div class='navbar-nav w-100 mt-2 me-4'>
+            <a href="#" class="nav-item nav-link @(ActiveTab == "ChuyenGia" ? "active" : "")">
+                <i class="fas fa-user-tie"></i>
+                Quản lý chuyên gia
+            </a>
+        </div>
+        <div class='navbar-nav w-100 mt-2 me-4'>
+            <a href="#" class="nav-item nav-link @(ActiveTab == "HiepHoi" ? "active" : "")">
+                <i class="fas fa-users"></i>
+                Quản lý hiệp hội DN
+            </a>
+        </div>
+
+    </nav>
+</div>

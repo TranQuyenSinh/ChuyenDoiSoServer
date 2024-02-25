@@ -1,0 +1,23 @@
+@import '../common/variables';
+
+.admin-navbar {
+    background-color: $backgrounddark;
+    color           : $whitecolor;
+    height          : 50px;
+
+    .dropdown-menu {
+        box-shadow: $default-boxshadow;
+
+        a {
+            cursor: pointer;
+        }
+    }
+}
+
+.sidebar-toggler {
+    cursor: pointer;
+
+    &:hover {
+        color: $maincolor;
+    }
+}
