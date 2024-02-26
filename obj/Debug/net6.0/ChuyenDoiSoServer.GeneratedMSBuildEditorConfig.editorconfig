@@ -16,12 +16,36 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\KhoaLuanTotNghiep\Code\ChuyenDoiSoServer
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/Auth/HanCheTruyCap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXV0aFxIYW5DaGVUcnV5Q2FwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/TinTuc/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGluVHVjXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/TinTuc/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGluVHVjXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/TinTuc/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGluVHVjXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/TinTuc/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGluVHVjXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/TinTuc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGluVHVjXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Areas/Admin/Views/_ViewImports.cshtml]
@@ -36,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxLaWNoSG9hdFRoYW5oQ29uZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/Components/Paging/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUGFnaW5nXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,8 +76,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZCYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/_Paging.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/_SideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlQmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/_SummerNoteScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdW1tZXJOb3RlU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KhoaLuanTotNghiep/Code/ChuyenDoiSoServer/Views/Shared/_ValidationScriptsPartial.cshtml]

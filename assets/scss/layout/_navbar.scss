@@ -1,9 +1,13 @@
 @import '../common/variables';
 
 .admin-navbar {
+    position        : fixed;
+    top             : 0;
+    left            : $sidebar-width;
+    right           : 0;
     background-color: $backgrounddark;
     color           : $whitecolor;
-    height          : 50px;
+    height          : $navbar-height;
 
     .dropdown-menu {
         box-shadow: $default-boxshadow;

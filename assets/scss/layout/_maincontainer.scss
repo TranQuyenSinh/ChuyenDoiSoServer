@@ -2,6 +2,12 @@
 
 .main-container {
     padding-left: $sidebar-width;
+    padding-top : $navbar-height;
     overflow    : hidden;
     min-height  : 100vh;
+
+    .main-content {
+        padding   : 16px;
+        min-height: 100%;
+    }
 }

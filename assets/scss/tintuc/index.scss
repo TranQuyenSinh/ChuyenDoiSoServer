@@ -1,0 +1,23 @@
+.create-tintuc-container {
+    .preview-thumb {
+        object-fit: contain;
+        max-height: 300px;
+        width     : -webkit-fill-available;
+    }
+}
+
+.detail-tintuc {
+    img {
+        max-height: 400px;
+        object-fit: contain;
+        width     : 100%;
+        margin    : 12px auto;
+
+        &.anh-bia {
+            object-fit: cover;
+            width     : 70%;
+            max-height: 400px;
+        }
+    }
+
+}

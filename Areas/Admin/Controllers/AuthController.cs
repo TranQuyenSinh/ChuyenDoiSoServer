@@ -44,7 +44,6 @@ public class AuthController : Controller
                     Image = AppPath.GenerateImagePath(AppPath.USER_PHOTO, user.Image, true),
                     Roles = user.UserVaitro.Select(x => x.Vaitro.Tenvaitro).ToList()
                 };
-
                 var json = JsonConvert.SerializeObject(userSession);
                 HttpContext.Session.SetString(Constants.USER_SESSION, json);
                 return RedirectToAction("Index", "Home", new { Area = "Admin" });
@@ -62,7 +61,13 @@ public class AuthController : Controller
     [HttpGet("logout")]
     public IActionResult Logout()
     {
-        HttpContext.Session.Clear();
+        HttpContext.Session.Remove(Constants.USER_SESSION);
         return RedirectToAction(nameof(Login));
+    }
+
+    [HttpGet("han-che-truy-cap")]
+    public IActionResult HanCheTruyCap()
+    {
+        return View();
     }
 }

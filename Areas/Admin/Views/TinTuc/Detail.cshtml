@@ -1,0 +1,32 @@
+@model ChuyenDoiSoServer.Models.Tintuc
+@using ChuyenDoiSoServer.Utils
+@{
+    ViewData["Title"] = ViewData["NavbarTitle"] = Model.Tieude;
+    ViewData["ActiveTab"] = "TinTuc";
+    var imageUrl = AppPath.GenerateImagePath(AppPath.TIN_TUC_PHOTO, Model.Hinhanh, true);
+}
+
+<div class="row justify-content-center detail-tintuc">
+    <div class="text-end">
+        <a class="btn btn-secondary text-light float-start" asp-action="Index">
+            Quay lại
+        </a>
+        <a class="btn btn-warning text-light" asp-action="Edit" asp-route-id="@Model.Id">
+            Chỉnh sửa
+        </a>
+        <a class="btn btn-danger text-light" asp-action="Delete" asp-route-id="@Model.Id">
+            Xóa
+        </a>
+    </div>
+    @* Title *@
+    <div class="text-center mt-4">
+        <div class="fs-3 fw-bold text-uppercase text-success text-decoration-none">@Model.Tieude</div>
+    </div>
+    <p class="chapter-order text-center mb-4">Tác giả: @Model.User.Name / Đăng lúc: @Model.CreatedAt</p>
+
+    <img class="anh-bia" src="@imageUrl" />
+    <p>@Model.Tomtat</p>
+    <div class="chapter-content mb-4">
+        @Html.Raw(Model.Noidung)
+    </div>
+</div>

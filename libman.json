@@ -5,6 +5,10 @@
     {
       "library": "popper.js@2.11.8",
       "destination": "wwwroot/lib/popper"
+    },
+    {
+      "library": "summernote@0.8.20",
+      "destination": "wwwroot/lib/summernote"
     }
   ]
 }

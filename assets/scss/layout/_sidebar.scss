@@ -14,7 +14,7 @@
 }
 
 .sidebar .navbar .navbar-nav .nav-link {
-    padding      : 7px 14px;
+    padding      : 7px;
     color        : $whitecolor;
     font-weight  : 500;
     border-radius: 0 30px 30px 0;
@@ -25,8 +25,8 @@
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
     background : #525252;
-    color      : $maincolor;
-    border-left: 4px solid $maincolor;
+    color      : #ffba00;
+    border-left: 4px solid #ffba00;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -36,6 +36,7 @@
     align-items    : center;
     justify-content: center;
     border-radius  : 40px;
+    margin-right   : 6px;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,

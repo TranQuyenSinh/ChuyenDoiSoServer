@@ -1,0 +1,68 @@
+@model ChuyenDoiSoServer.Admin.TinTuc.RequestModels.EditTinTuc
+
+@{
+    ViewData["Title"] = ViewData["NavbarTitle"] = "Sửa tin tức";
+    ViewData["ActiveTab"] = "TinTuc";
+}
+
+<form class="create-tintuc-container" asp-action="Edit" method="POST" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="control-label">Ảnh bìa</label>
+            <input class="form-control" name="File" type="file">
+            <img class="preview-thumb mt-4" src="@Model.Hinhanh" alt="">
+        </div>
+        <div class="col-md-8">
+            <div  class="mb-3">
+                <label class="control-label">Tiêu đề</label>
+                <input asp-for="Tieude" class="form-control" />
+                <span asp-validation-for="Tieude" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="control-label">Lĩnh vực</label>
+                <select asp-for="LinhvucId" class="form-control" asp-items="ViewBag.LinhVucId"></select>
+            </div>
+            <div class="mb-3">
+                <label class="control-label">Tóm tắt</label>
+                <textarea rows="7" asp-for="Tomtat" class="form-control"></textarea>
+                <span asp-validation-for="Tomtat" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="control-label">Nội dung</label>
+            <textarea required id="summernote" asp-for="Noidung" class="form-control"></textarea>
+            <span asp-validation-for="Noidung" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <a asp-action="Index" class="btn btn-secondary">Quay về</a>
+            <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @Html.RenderPartialAsync("_ValidationScriptsPartial")
+    @Html.RenderPartialAsync("_SummerNoteScriptsPartial")
+
+    <script>
+        function clickInput() {
+            $("input[type=file]").click();
+        }
+
+        function setEventInputChange(preview_url) {
+            $("input[type=file]").change(function(e) {
+                URL.revokeObjectURL(preview_url)
+                var file = e.target.files[0]
+                preview_url = URL.createObjectURL(file)
+                $(".preview-thumb").attr("src", preview_url)
+            })
+        }
+        $(document).ready(function() {
+            var preview_url = "";
+            setEventInputChange(preview_url)
+        })
+    </script>
+}

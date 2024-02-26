@@ -6,9 +6,6 @@ using ChuyenDoiSoServer.Services;
 using ChuyenDoiSoServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ChuyenDoiSoServer.Admin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,11 +23,12 @@ builder.Services.AddDbContext<ChuyendoisoContext>(options =>
 });
 
 /* ================ Config Session ================ */
+
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
+builder.Services.AddSession(cfg =>
 {
-	options.Cookie.Name = "ChuyenDoiSo";
-	options.IdleTimeout = new TimeSpan(0, 60, 0);
+	cfg.Cookie.Name = "ChuyenDoiSo";
+	cfg.IdleTimeout = new TimeSpan(0, 60, 0);
 });
 
 /* ================ Send Mail Service ================ */

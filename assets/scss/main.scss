@@ -1,8 +1,15 @@
+// Layout
 @import "./layout/navbar";
 @import "./layout/sidebar";
-@import "./layout/footer";
 @import "./layout/maincontainer";
-@import "./auth/login";
+@import "./layout/footer";
 
 // Custom styles
-@import "./custom/input"
+@import "./custom/input";
+@import "./custom/table";
+
+// Auth
+@import "./auth/login";
+
+// Tin tức
+@import './tintuc/index'

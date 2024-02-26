@@ -12,6 +12,9 @@
     @* Font awesome *@
     <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
+    @* Sumernote *@
+    <link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" />
+
     @* My CSS *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/main.min.css" asp-append-version="true" />
@@ -23,7 +26,9 @@
         <Partial name="_SideBar" />
         <div class="main-container">
             <Partial name="_NavBar" />
-            @RenderBody()
+            <div class="main-content">
+                @RenderBody()
+            </div>
             <Partial name="_Footer" />
         </div>
     </main>
@@ -31,6 +36,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/popper/umd/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/summernote/summernote-lite.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
