@@ -44,8 +44,8 @@
 </form>
 
 @section Scripts {
-    @Html.RenderPartialAsync("_ValidationScriptsPartial")
-    @Html.RenderPartialAsync("_SummerNoteScriptsPartial")
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_SummerNoteScriptsPartial" />
 
     <script>
         function clickInput() {

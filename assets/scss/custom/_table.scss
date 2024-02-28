@@ -1,4 +1,11 @@
-table tr th {
-    text-align    : center;
-    vertical-align: middle;
+table.table-vertical-middle {
+    td {
+        vertical-align: middle;
+    }
+}
+
+table.table-text-center {
+    td {
+        text-align: center;
+    }
 }

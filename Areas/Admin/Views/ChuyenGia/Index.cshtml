@@ -1,0 +1,125 @@
+@model IEnumerable<Chuyengia>
+
+@{
+    ViewData["Title"] = ViewData["NavbarTitle"] = "Quản lý chuyên gia";
+    ViewData["ActiveTab"] = "ChuyenGia";
+    var linhVucs = ViewData["LinhVucs"] as List<Linhvuc>;
+
+    var activeClasses = "";
+}
+<div class="list-chuyengia">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex gap-3">
+            <h3>@Model.Count() Chuyên gia</h3>
+            <a class="btn btn-success align-self-center" asp-action="Create">Thêm mới</a>
+        </div>
+        <form asp-action="Index" method="get" class="d-flex gap-2">
+            <input style="width: 300px;" type='text' value="@ViewData["Search"]" class='form-control' name="search" placeholder='Tìm kiếm theo tên chuyên gia...' />
+            <input type='submit' class='btn btn-primary' value="Tìm kiếm" />
+        </form>
+    </div>
+
+    <div class="tab-container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            @foreach (var lv in linhVucs)
+            {
+                var count = Model.Count(x => x.LinhvucId == lv.Id);
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @(linhVucs.First() == lv ? "active": "")" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#@lv.Id" type="button" role="tab" aria-controls="pills-home" aria-selected="true">@lv.Tenlinhvuc (@count)</button>
+                </li>
+            }
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            @foreach (var lv in linhVucs)
+            {
+                var chuyenGias = Model.Where(x => x.LinhvucId == lv.Id).ToList();
+
+                <div class="tab-pane fade @(linhVucs.First() == lv ? "show active": "")" id="@lv.Id" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <table class="table table-borderless table-vertical-middle ">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th>
+                                    Photo
+                                </th>
+                                <th>
+                                    Họ tên
+                                </th>
+                                <th>
+                                    Điện thoại
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Trạng thái
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-light">
+                            @foreach (var item in chuyenGias)
+                            {
+                                @* var isDuyet = item. == 1 ? "checked" : ""; *@
+                                <tr>
+                                    <td style="max-width: 300px; text-align: center; vertical-align: center;">
+                                        <img src="@AppPath.GenerateImagePath(AppPath.USER_PHOTO, item.User.Image, true)" style="height: 100px;" />
+                                    </td>
+                                    <td style="max-width: 300px;">
+                                        @Html.DisplayFor(modelItem => item.Tenchuyengia)
+                                    </td>
+                                    <td style="max-width: 300px;">
+                                        @Html.DisplayFor(modelItem => item.Sdt)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @if (item.User.Status.ToLower() == "active")
+                                        {
+                                            <span class="custom-badge success">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="custom-badge danger">Inactive</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning text-light" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-danger text-light" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                        <a class="btn btn-primary text-light" asp-action="Detail" asp-route-id="@item.Id">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        @* const handleDuyetTin = (event) => {
+        let input = event.target;
+        let id = input.dataset.id;
+        let isDuyet = input.checked ? 1:0;
+
+        $.ajax({
+        url: "@Url.Action("DuyetTin")",
+        data: {
+        id,
+        isDuyet
+        },
+        method: "PUT",
+        })
+        } *@
+    </script>
+}

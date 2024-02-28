@@ -1,0 +1,25 @@
+.tab-container {
+    background-color: white;
+    border          : 1px solid $bordercolor-light;
+
+    .nav {
+        background-color: #fcfcfc;
+    }
+
+    .nav-link {
+        font-weight  : bold;
+        color        : $textgraycolor;
+        border-right : 2px solid $bordercolor-light;
+        border-bottom: 2px solid $bordercolor-light;
+        border-radius: 0;
+
+        &.active {
+            background-color: white;
+            color           : $maincolor;
+        }
+    }
+
+    .tab-pane {
+        padding: 24px;
+    }
+}

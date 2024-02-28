@@ -1,0 +1,33 @@
+.custom-badge {
+    display         : inline-block;
+    padding         : 2px 6px;
+    border          : 1px solid $maincolor;
+    background-color: #e5f4fb;
+    color           : $maincolor;
+    border-radius   : 6px;
+    font-weight     : 500;
+
+    &.success {
+        background-color: #e8fbe5;
+        color           : $lightgreencolor;
+        border          : 1px solid $lightgreencolor;
+    }
+
+    &.danger {
+        background-color: #fbe5e5;
+        color           : $redcolor;
+        border          : 1px solid $redcolor;
+    }
+
+    &.warning {
+        background-color: #fbfbe5;
+        color           : $yellowcolor;
+        border          : 1px solid $yellowcolor;
+    }
+
+    &.secondary {
+        background-color: #f4f4e1;
+        color           : $textgraycolor;
+        border          : 1px solid $textgraycolor;
+    }
+}

@@ -1,0 +1,275 @@
+@using ChuyenDoiSoServer.Utils
+@model ChuyenDoiSoServer.Models.Doanhnghiep
+
+@{
+    ViewData["Title"] = ViewData["NavbarTitle"] = $"Doanh nghiệp {Model.Tentiengviet}";
+    ViewData["ActiveTab"] = "DoanhNghiep";
+    var message = TempData["StatusMessage"];
+
+    var daiDien = Model.DoanhnghiepDaidien.FirstOrDefault<DoanhnghiepDaidien>();
+    var anhMatTruocUrl = AppPath.GenerateImagePath(AppPath.CCCD, daiDien.ImgMattruoc, true);
+    var anhMatSauUrl = AppPath.GenerateImagePath(AppPath.CCCD, daiDien.ImgMatsau, true);
+}
+
+<div class="doanhnghiep-detail">
+
+    <div class="info-container">
+        <div class="d-flex gap-3">
+            <img src="~/images/no_image.jpg" class="avatar" alt="">
+            <div>
+                <div class="title mb-1">@Model.Tentiengviet</div>
+                <div class="custom-badge success me-2">@Model.DoanhnghiepLoaihinh.Linhvuc.Tenlinhvuc</div>
+                <div class="custom-badge warning me-2">@Model.DoanhnghiepLoaihinh.Tenloaihinh</div>
+                <div class="text-muted mt-2">Đăng ký lúc: @Model.CreatedAt</div>
+            </div>
+            @* Buttons *@
+            <div class="d-flex gap-2 align-self-end flex-fill">
+                @if (Model.User.EmailVerifiedAt == null)
+                {
+                    <form asp-action="GuiEmailXacThuc" asp-route-id="@Model.Id">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="far fa-envelope-open"></i>
+                            Gửi lại email xác thực</button>
+                    </form>
+                }
+                @if (Model.User.Status.ToLower() == "inactive")
+                {
+                    <form asp-action="DuyetTaiKhoan" asp-route-id="@Model.Id">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i>
+                            Duyệt tài khoản</button>
+                    </form>
+                }
+                <a class="btn btn-danger ms-auto" asp-action="Delete" asp-route-id="@Model.Id">
+                    <i class="far fa-trash-alt"></i>
+                    Xóa
+                </a>
+            </div>
+            @* End Buttons *@
+        </div>
+    </div>
+
+    @* Chart *@
+    <div class="statistic-container">
+
+    </div>
+
+    <div class="tab-container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Thông tin doanh nghiệp</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Đại diện doanh nghiệp</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Mã số thuế
+                        </div>
+                        <div class="text-bold">
+                            @Model.Mathue
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Tên tiếng việt
+                        </div>
+                        <div class="text-bold">
+                            @Model.Tentiengviet
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Tên tiếng anh
+                        </div>
+                        <div class="text-bold">
+                            @(Model.Tentienganh ?? "-")
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Tên viết tắt
+                        </div>
+                        <div class="text-bold">
+                            @(Model.Tenviettat ?? "-")
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Loại hình doanh nghiệp
+                        </div>
+                        <div class="text-bold">
+                            @Model.DoanhnghiepLoaihinh.Tenloaihinh
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Số lượng nhân sự
+                        </div>
+                        <div class="text-bold">
+                            @Model.Soluongnhansu
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Ngày thành lập
+                        </div>
+                        <div class="text-bold">
+                            @Model.Ngaylap.ToShortDateString()
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Địa chỉ trụ sở
+                        </div>
+                        <div class="text-bold">
+                            @Model.Diachi
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Email
+                        </div>
+                        <div class="text-bold">
+                            @Model.User.Email
+                            @if (Model.User.EmailVerifiedAt != null)
+                            {
+                                <div class="text-success">(Đã xác thực)</div>
+                            }
+                            else
+                            {
+                                <div class="text-warning">(Chưa xác thực)</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Số điện thoại
+                        </div>
+                        @foreach (var sdt in Model.DoanhnghiepSdt)
+                        {
+                            <div class="text-bold">
+                                @sdt.Sdt - @sdt.Loaisdt
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Fax
+                        </div>
+                        <div class="text-bold">
+                            @(Model.Fax ?? "-")
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Trạng thái tài khoản
+                        </div>
+                        <div class="text-bold">
+                            @if (Model.User.Status.ToLower() == "active")
+                            {
+                                <div class="text-success">Đang hoạt động</div>
+                            }
+                            else
+                            {
+                                <div class="text-warning">Chờ duyệt</div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Họ tên
+                        </div>
+                        <div class="text-bold">
+                            @daiDien?.Tendaidien
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Email
+                        </div>
+                        <div class="text-bold">
+                            @daiDien?.Email
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Số điện thoại
+                        </div>
+                        <div class="text-bold">
+                            @daiDien?.Sdt
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Địa chỉ
+                        </div>
+                        <div class="text-bold">
+                            @daiDien?.Diachi
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Căn cước công dân
+                        </div>
+                        <div class="text-bold">
+                            @daiDien?.Cccd
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Ảnh mặt trước
+                        </div>
+                        <img class="img-cccd" src="@anhMatTruocUrl" />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Ảnh mặt sau
+                        </div>
+                        <div class="text-bold">
+                            <img class="img-cccd" src="@anhMatSauUrl" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="subject">
+                            Chức vụ
+                        </div>
+                        <div class="text-bold">
+                            @daiDien.Chucvu @message
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @if (message != null)
+    {
+        <script>
+            Toastify({
+                text: '@Html.Raw(message)',
+                duration: 3000,
+                gravity: "bottom",
+                position: "center",
+                className: "custom-toast",
+                offset:
+                {
+                    y: 25
+                },
+            }).showToast();
+        </script>
+    }
+
+}

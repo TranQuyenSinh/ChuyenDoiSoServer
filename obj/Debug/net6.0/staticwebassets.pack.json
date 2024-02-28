@@ -17,6 +17,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\images\\agu_logo.png",
+      "PackagePath": "staticwebassets\\images\\agu_logo.png"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\images\\banned_icon.png",
+      "PackagePath": "staticwebassets\\images\\banned_icon.png"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\images\\check.jpg",
+      "PackagePath": "staticwebassets\\images\\check.jpg"
+    },
+    {
       "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\images\\login_bg.jpg",
       "PackagePath": "staticwebassets\\images\\login_bg.jpg"
     },
@@ -8375,6 +8387,30 @@
     {
       "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\summernote\\summernote.min.js",
       "PackagePath": "staticwebassets\\lib\\summernote\\summernote.min.js"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify-es.js",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify-es.js"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify-es.min.js",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify-es.min.js"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify.css",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify.css"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify.js",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify.js"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify.min.css",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify.min.css"
+    },
+    {
+      "Id": "D:\\KhoaLuanTotNghiep\\Code\\ChuyenDoiSoServer\\wwwroot\\lib\\toastify-js\\toastify.min.js",
+      "PackagePath": "staticwebassets\\lib\\toastify-js\\toastify.min.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.ChuyenDoiSoServer.Microsoft.AspNetCore.StaticWebAssets.props",

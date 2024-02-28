@@ -37,6 +37,13 @@ public class AuthController : Controller
                                 .FirstOrDefaultAsync();
             if (user != null && BC.Verify(model.Password, user.Password))
             {
+
+                if (user.UserVaitro.ToList().All(uvt => !Constants.ALLOW_LOGIN_ROLES.Contains(uvt.Vaitro.Tenvaitro)))
+                {
+                    ModelState.AddModelError("", "Bạn không có quyền truy cập trang web này");
+                    return View();
+                }
+
                 var userSession = new UserSession
                 {
                     Id = user.Id,

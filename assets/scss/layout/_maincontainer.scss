@@ -1,13 +1,17 @@
 @import '../common/variables';
 
 .main-container {
-    padding-left: $sidebar-width;
-    padding-top : $navbar-height;
-    overflow    : hidden;
-    min-height  : 100vh;
+    padding-left    : $sidebar-width;
+    padding-top     : $navbar-height;
+    overflow        : hidden;
+    min-height      : 100vh;
+    background-color: $backgrounddark;
 
     .main-content {
-        padding   : 16px;
-        min-height: 100%;
+        padding         : 16px;
+        min-height      : 80vh;
+        border-radius   : 16px;
+        margin          : 6px;
+        background-color: $backgroundcolor-ice;
     }
 }

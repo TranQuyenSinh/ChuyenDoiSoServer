@@ -1,0 +1,86 @@
+@using ChuyenDoiSoServer.Utils
+@model IEnumerable<Doanhnghiep>
+
+@{
+    ViewData["Title"] = ViewData["NavbarTitle"] = "Quản lý doanh nghiệp";
+    ViewData["ActiveTab"] = "DoanhNghiep";
+    var logo_demo = AppPath.GenerateImagePath(AppPath.DOANHNGHIEP_LOGO, "an-bui.png", true);
+}
+<div class="list-doanhnghiep">
+    <div class="d-flex justify-content-between mb-3">
+        <h3>@ViewData["TotalCompany"] Doanh nghiệp</h3>
+        <form asp-action="Index" method="get" class="d-flex gap-2">
+            <input style="width: 300px;" type='text' value="@ViewData["Search"]" class='form-control' name="search" placeholder='Tìm kiếm theo tên doanh nghiệp...' />
+            <input type='submit' class='btn btn-primary' value="Tìm kiếm" />
+        </form>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <a asp-action="Detail" asp-route-id="@item.Id" class="card">
+                    @if (item.User.Status.ToLower() == "active")
+                    {
+                        <div class="ribbon success">Active</div>
+                    }
+                    else
+                    {
+                        <div class="ribbon secondary">Inactive</div>
+                    }
+                    <div class="top-badge-container">
+                        @if (item.User.EmailVerifiedAt != null)
+                        {
+                            <span class="top-badge verified">Đã xác nhận email</span>
+                        }
+                        else
+                        {
+                            <span class="top-badge">Chưa xác nhận email</span>
+                        }
+                    </div>
+                    <div class="d-flex gap-3 align-items-start">
+                        <img src="@logo_demo" class="border border-1" style="width: 100px; height: 100px;" />
+                        <div>
+
+                            <h5 class="card-title">@item.Tentiengviet</h5>
+                            <div class="text-muted">Mã số thuế: @item.Mathue</div>
+                        </div>
+                    </div>
+                    <div class="card-text mt-2">@item.Mota</div>
+                    <div class="card-subject">Loại hình kinh doanh</div>
+                    <div class="card-text" style="font-weight: 500;">@item.DoanhnghiepLoaihinh.Tenloaihinh</div>
+                    <div class="card-subject mt-auto">Địa chỉ</div>
+                    <div class="card-text">@item.Diachi</div>
+                    <div class="card-subject">Số điện thoại</div>
+                    <div>
+                        @foreach (var sdt in item.DoanhnghiepSdt)
+                        {
+                            <span class="custom-badge me-2 mt-2">@sdt.Sdt - @sdt.Loaisdt</span>
+                        }
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+@await Component.InvokeAsync("Paging", ViewBag.PagingOptions)
+
+@section Scripts {
+    <script type="text/javascript">
+
+        @* const handleDuyetTin = (event) => {
+        let input = event.target;
+        let id = input.dataset.id;
+        let isDuyet = input.checked ? 1:0;
+
+        $.ajax({
+        url: "@Url.Action("DuyetTin")",
+        data: {
+        id,
+        isDuyet
+        },
+        method: "PUT",
+        })
+        } *@
+    </script>
+}

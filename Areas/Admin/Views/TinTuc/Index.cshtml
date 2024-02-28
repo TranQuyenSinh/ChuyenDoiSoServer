@@ -7,7 +7,12 @@
 }
 
 <div class="d-flex justify-content-between mb-3">
-    <a class="btn btn-success" asp-action="Create">Thêm tin</a>
+    <div class="d-flex gap-3">
+       <div class="d-flex gap-3">
+            <h3>@ViewData["TotalTin"] Tin tức</h3>
+            <a class="btn btn-success align-self-center" asp-action="Create">Thêm mới</a>
+        </div>
+    </div>
     <form asp-action="Index" method="get" class="d-flex gap-2">
         <input
             style="width: 300px;"
@@ -24,7 +29,7 @@
         />
     </form>
 </div>
-<table class="table table-striped table-bordered">
+<table class="table table-bordered">
     <thead class="bg-dark text-light">
         <tr>
             <th>
@@ -48,7 +53,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-light">
         @foreach (var item in Model)
         {
             var isDuyet = item.Duyet == 1 ? "checked":"";

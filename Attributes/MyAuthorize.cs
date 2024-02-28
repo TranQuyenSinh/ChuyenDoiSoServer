@@ -25,17 +25,12 @@ public class MyAuthorize : ActionFilterAttribute
         {
             var user = JsonConvert.DeserializeObject<UserSession>(userSession);
             var requiredRoles = RoleNames.Split(", ").ToList();
-            foreach (var role in requiredRoles)
+
+            if (!requiredRoles.Any(x => user.Roles.Contains(x)))
             {
-                if (!user.Roles.Contains(role))
-                {
-                    context.Result = new RedirectResult("/admin/auth/han-che-truy-cap");
-                    return;
-                }
+                context.Result = new RedirectResult("/admin/auth/han-che-truy-cap");
+                return;
             }
-
         }
-
-
     }
 }

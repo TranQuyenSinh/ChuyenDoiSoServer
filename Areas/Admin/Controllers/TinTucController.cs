@@ -6,12 +6,13 @@ using ChuyenDoiSoServer.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ChuyenDoiSoServer.Admin.TinTuc.RequestModels;
 using ChuyenDoiSoServer.Components;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChuyenDoiSoServer.Admin.Controllers;
 
 [Route("Admin/[controller]")]
 [Area("Admin")]
-[MyAuthorize(RoleNames = "Cộng tác viên")]
+[MyAuthorize(RoleNames = "Admin, Cộng tác viên")]
 public class TinTucController : Controller
 {
     private readonly ChuyendoisoContext _context;
@@ -47,6 +48,7 @@ public class TinTucController : Controller
             TotalItem = totalItem,
             GenerateUrl = (page) => Url.Action(nameof(Index), new { page, search })
         };
+        ViewData["TotalTin"] = totalItem;
         return View(tinTucs);
     }
 
